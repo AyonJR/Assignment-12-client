@@ -10,6 +10,7 @@ import Home from './Pages/Home/Home.jsx';
 import Main from './Pages/Main/Main.jsx';
 import Login from './Pages/Authentication/Login.jsx';
 import Register from './Pages/Authentication/Register.jsx';
+import AuthProvider from './Pages/Provider/AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,15 +18,15 @@ const router = createBrowserRouter([
     element: <Main></Main>,
     children: [
       {
-        path: "/" ,
+        path: "/",
         element: <Home></Home>
       },
       {
-        path: "/login" ,
+        path: "/login",
         element: <Login></Login>
       },
       {
-        path: "/register" ,
+        path: "/register",
         element: <Register></Register>
       }
     ]
@@ -34,6 +35,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )
