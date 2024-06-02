@@ -1,6 +1,7 @@
 import Banner from "../shared/Banner";
 import Navbar from "../shared/Navbar";
 import Promotions from "./Promotions";
+import Recommendations from "./Recommendations";
 
 const Home = () => {
     return (
@@ -14,6 +15,9 @@ const Home = () => {
             </div>
             <div className="mt-16">
                 <Promotions></Promotions>
+            </div>
+            <div className="mt-16">
+                <Recommendations></Recommendations>
             </div>
         </div>
     );
