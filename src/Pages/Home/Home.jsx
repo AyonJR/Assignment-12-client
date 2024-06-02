@@ -1,3 +1,4 @@
+import AllTest from "../../Routes/AllTest";
 import Banner from "../shared/Banner";
 import Navbar from "../shared/Navbar";
 import Promotions from "./Promotions";
@@ -19,6 +20,7 @@ const Home = () => {
             <div className="mt-16">
                 <Recommendations></Recommendations>
             </div>
+          
         </div>
     );
 };

@@ -25,11 +25,15 @@ const Navbar = () => {
   </div>
   <div className="navbar-center hidden mt-5 lg:flex">
     <ul className="menu menu-horizontal px-1 text-lg">
-      <li className="mr-5">Item 1</li>
+    <Link to={'/allTest'}>
+      <li className="mr-5">
+       AllTest
+      </li></Link>      
       <Link to={'/login'}>
       <li className="mr-5">
        Login
       </li></Link>
+      
       <Link to={'/register'}>
       <li>Register</li>
     </Link>
