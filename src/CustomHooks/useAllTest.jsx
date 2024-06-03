@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 
 const useAllTest = () => {
+    
     const axiosSecure = useAxiosSecure();
     const { data: allTest = [], isLoading, isError, error } = useQuery({
         queryKey: ['allTest'],
