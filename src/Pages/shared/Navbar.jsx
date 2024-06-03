@@ -27,8 +27,12 @@ const Navbar = () => {
     <ul className="menu menu-horizontal px-1 text-lg">
     <Link to={'/allTest'}>
       <li className="mr-5">
-       AllTest
+       All Test
       </li></Link>      
+      <Link to={'/dashboard/myAppointments'}>
+      <li className="mr-5">
+       Dashboard
+      </li></Link> 
       <Link to={'/login'}>
       <li className="mr-5">
        Login

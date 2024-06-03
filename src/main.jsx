@@ -16,6 +16,8 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import AllTest from './Routes/AllTest.jsx';
+import Dashboard from './Pages/Dashboard/Dashboard.jsx';
+import MyAppointments from './Pages/Dashboard/UserProfile/MyAppointments.jsx';
 
 const queryClient = new QueryClient()
 
@@ -42,6 +44,16 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>, 
+    children: [
+      {
+        path: "myAppointments",
+        element: <MyAppointments></MyAppointments>
+      }
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
