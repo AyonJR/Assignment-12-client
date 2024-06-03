@@ -20,6 +20,7 @@ import Dashboard from './Pages/Dashboard/Dashboard.jsx';
 import MyAppointments from './Pages/Dashboard/UserProfile/MyAppointments.jsx';
 import AddBanner from './Pages/Dashboard/AdminProfile/AddBanner.jsx';
 import AddTest from './Pages/Dashboard/AdminProfile/AddTest.jsx';
+import TestDetails from './Routes/TestDetails.jsx';
 
 const queryClient = new QueryClient()
 
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "addTest",
         element: <AddTest></AddTest>
+      },
+      {
+        path: "test/:id",
+        element: <TestDetails></TestDetails>
       },
       
     ]

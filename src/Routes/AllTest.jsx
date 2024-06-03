@@ -8,6 +8,7 @@ const AllTest = () => {
     const [tests, setTests] = useState([]);
     const [searchDate, setSearchDate] = useState(new Date());
     const [allTest, isLoading, isError, error] = useAllTest();
+    console.log(allTest)
 
     useEffect(() => {
         if (allTest.length > 0) {
@@ -44,7 +45,7 @@ const AllTest = () => {
                 />
             </div>
             <div className="grid mt-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {tests.map(test => <SingleTestCard key={test._id} test={test}></SingleTestCard>
+                {allTest.map(test => <SingleTestCard key={test._id} test={test}></SingleTestCard>
 
 
                 )}

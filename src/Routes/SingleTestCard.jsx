@@ -9,6 +9,9 @@ const SingleTestCard = ({test}) => {
                         <p className="mt-2">{test.description}</p>
                         <p className="mt-2 text-gray-600">Date: {test.date}</p>
                         <p className="mt-2 text-gray-600">Slots: {test.slots.join(", ")}</p>
+                       <div className="flex justify-center">
+                       <button className="btn bg-blue-400 text-white font-semibold my-2">Details</button>
+                       </div>
                     </div>
         </div>
     );
