@@ -18,6 +18,8 @@ import {
 import AllTest from './Routes/AllTest.jsx';
 import Dashboard from './Pages/Dashboard/Dashboard.jsx';
 import MyAppointments from './Pages/Dashboard/UserProfile/MyAppointments.jsx';
+import AddBanner from './Pages/Dashboard/AdminProfile/AddBanner.jsx';
+import AddTest from './Pages/Dashboard/AdminProfile/AddTest.jsx';
 
 const queryClient = new QueryClient()
 
@@ -51,7 +53,16 @@ const router = createBrowserRouter([
       {
         path: "myAppointments",
         element: <MyAppointments></MyAppointments>
-      }
+      },
+      {
+        path: "addBanner",
+        element: <AddBanner></AddBanner>
+      },
+      {
+        path: "addTest",
+        element: <AddTest></AddTest>
+      },
+      
     ]
   }
 ]);
