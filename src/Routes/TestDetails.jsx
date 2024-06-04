@@ -78,6 +78,9 @@ const TestDetails = () => {
                             {singleTest.slots}
                         </span>
                     </div>
+                    <div>
+                        price : ${singleTest.price} 
+                    </div>
                 </div>
                 <div className='flex justify-center'>
                     <button onClick={openModal} className="btn bg-blue-400 text-white mb-5">Reserve</button>
