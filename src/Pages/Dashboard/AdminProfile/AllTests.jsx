@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const AllTests = () => {
     const [allTest, isLoading, isError, error] = useAllTest();
+    console.log(allTest)
 
     if (isLoading) {
         return <div className="flex justify-center items-center h-screen">Loading...</div>;
@@ -14,7 +15,7 @@ const AllTests = () => {
 
     return (
         <div className="container mx-auto p-8">
-            <table className="min-w-full bg-white">
+            <table className="min-w-full bg-white overflow-x-auto">
                 <thead>
                     <tr>
                         <th className="w-1/3 px-4 py-2">Title</th>

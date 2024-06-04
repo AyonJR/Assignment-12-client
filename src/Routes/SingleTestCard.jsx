@@ -8,7 +8,9 @@ const SingleTestCard = ({ test }) => {
                 <h3 className="text-xl font-semibold mt-4">{test.title}</h3>
                 <p className="mt-2">{test.description}</p>
                 <p className="mt-2 text-gray-600">Date: {test.date}</p>
-                <p className="mt-2 text-gray-600">Slots: {test.slots.join(", ")}</p>
+                <p className="mt-2 text-gray-600">
+                    Slots: {Array.isArray(test.slots) ? test.slots.join(", ") : "No slots available"}
+                </p>
                 <div className="flex justify-center">
                     <Link to={`/test/${test._id}`} className="btn bg-blue-400 text-white font-semibold my-2">
                         Details
