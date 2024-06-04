@@ -20,16 +20,19 @@ const AllTests = () => {
                     <tr>
                         <th className="w-1/3 px-4 py-2">Title</th>
                         <th className="w-1/3 px-4 py-2">Description</th>
-                        <th className="w-1/6 px-4 py-2">Date</th>
+                        <th className="w-1/6 px-4 py-2">StartDate</th>
+                        <th className="w-1/6 px-4 py-2">EndDate</th>
+
                         <th className="w-1/6 px-4 py-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {allTest.map((test) => (
                         <tr key={test._id}>
-                            <td className="border px-4 py-2">{test.title}</td>
-                            <td className="border px-4 py-2">{test.description}</td>
-                            <td className="border px-4 py-2">{test.date}</td>
+                            <td className="border px-4 py-2">{test.name}</td>
+                            <td className="border px-4 py-2">{test.details}</td>
+                            <td className="border px-4 py-2">{test.startDate}</td>
+                            <td className="border px-4 py-2">{test.endDate}</td>
                             
                         </tr>
                     ))}
