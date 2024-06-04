@@ -8,18 +8,19 @@ const AllTest = () => {
     const [tests, setTests] = useState([]);
     const [searchDate, setSearchDate] = useState(new Date());
     const [allTest, isLoading, isError, error] = useAllTest();
-    console.log(allTest)
+    console.log(allTest);
 
     useEffect(() => {
         if (allTest.length > 0) {
-            const filteredTests = allTest.filter(test => new Date(test.date) >= new Date());
+            const today = new Date().setHours(0, 0, 0, 0);
+            const filteredTests = allTest.filter(test => new Date(test.date).setHours(0, 0, 0, 0) >= today);
             setTests(filteredTests);
         }
     }, [allTest]);
 
     const handleDateChange = (date) => {
         setSearchDate(date);
-        const filteredTests = allTest.filter(test => new Date(test.date).toDateString() === date.toDateString());
+        const filteredTests = tests.filter(test => new Date(test.date).toDateString() === date.toDateString());
         setTests(filteredTests);
     };
 
@@ -45,10 +46,7 @@ const AllTest = () => {
                 />
             </div>
             <div className="grid mt-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {allTest.map(test => <SingleTestCard key={test._id} test={test}></SingleTestCard>
-
-
-                )}
+                {allTest.map(test => <SingleTestCard key={test._id} test={test} />)}
             </div>
         </div>
     );
