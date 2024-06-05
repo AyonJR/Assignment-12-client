@@ -59,7 +59,7 @@ const Dashboard = () => {
                                 <PiFlagBannerFill />
                                     All Banners</NavLink>
                                 </li>
-                                <li className="font-semibold"><NavLink to={"/dashboard/statistics"}>
+                                <li className="font-semibold"><NavLink to={"/dashboard/serviceChart"}>
                                 <SiStatista />
                                     Statistics</NavLink>
                                 </li>
