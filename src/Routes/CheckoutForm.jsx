@@ -90,6 +90,8 @@ const CheckoutForm = ({testInfo}) => {
         const paymentInfo = {
             ...testInfo , transactionId : paymentIntent.id,
             data : new Date(),
+            reportStatus : "pending" ,
+            ...user
         }
 
         console.log(paymentInfo)
