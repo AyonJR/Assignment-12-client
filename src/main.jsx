@@ -23,6 +23,7 @@ import AddTest from './Pages/Dashboard/AdminProfile/AddTest.jsx';
 import TestDetails from './Routes/TestDetails.jsx';
 import AllTests from './Pages/Dashboard/AdminProfile/AllTests.jsx';
 import MostBookedServicesChart from './Pages/Dashboard/AdminProfile/MostBookedServicesChart.jsx';
+import AllBanners from './Pages/Dashboard/AdminProfile/AllBanners.jsx';
 
 const queryClient = new QueryClient()
 
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "serviceChart",
         element: <MostBookedServicesChart></MostBookedServicesChart>
+      },
+      {
+        path: "allBanners",
+        element: <AllBanners></AllBanners>
       },
      
      

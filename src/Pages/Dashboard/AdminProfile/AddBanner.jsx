@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import useAxiosSecure from "../../../CustomHooks/useAxiosSecure";
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 const AddBanner = () => {
     const axiosSecure = useAxiosSecure();
@@ -26,8 +26,10 @@ const AddBanner = () => {
         e.preventDefault();
         try {
             const response = await axiosSecure.post('/addBanner', formData);
+            console.log(response)
             if (response.data.insertedId) {
                 toast.success("Banner added successfully!");
+                
             }
         } catch (error) {
             console.error('Error adding banner:', error);
@@ -37,6 +39,7 @@ const AddBanner = () => {
 
     return (
         <div className="container mx-auto p-8">
+            <ToastContainer></ToastContainer>
             <h2 className="text-2xl font-bold mb-4">Add New Banner</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
