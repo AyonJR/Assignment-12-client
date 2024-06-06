@@ -1,10 +1,8 @@
 import { createContext, useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut,  } from "firebase/auth"; // Import signOut function
-// import app from "../firebase/firebase.config";
-// import app from "./firebase.config.js/firebase.config";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import app from "../../firebase/firebase.config";
 
-const auth = getAuth(app)
+const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 export const AuthContext = createContext(null);
@@ -13,15 +11,10 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
-             
-              setUser(user);
-            // console.log(user)
+            setUser(user);
             setLoading(false);
-            // if user exists issue a token
-            
         });
 
         return () => unsubscribe();
@@ -32,9 +25,16 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
-    const loginUser = (email, password) => {
+    const loginUser = async (email, password) => {
         setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password);
+        try {
+            const result = await signInWithEmailAndPassword(auth, email, password);
+            setUser(result.user);
+        } catch (error) {
+            throw error;
+        } finally {
+            setLoading(false);
+        }
     };
 
     const loginUserWithGoogle = async () => {
@@ -49,17 +49,15 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-
-  
-
-
     const logoutUser = async () => {
-        try { 
-            setLoading(true)
+        setLoading(true);
+        try {
             await signOut(auth);
             setUser(null);
         } catch (error) {
             throw error;
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -69,7 +67,7 @@ const AuthProvider = ({ children }) => {
         createUser,
         loginUser,
         loginUserWithGoogle,
-        logoutUser 
+        logoutUser
     };
 
     return (

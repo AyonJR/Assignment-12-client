@@ -25,6 +25,9 @@ import AllTests from './Pages/Dashboard/AdminProfile/AllTests.jsx';
 import MostBookedServicesChart from './Pages/Dashboard/AdminProfile/MostBookedServicesChart.jsx';
 import AllBanners from './Pages/Dashboard/AdminProfile/AllBanners.jsx';
 import AllUsers from './Pages/Dashboard/AdminProfile/AllUsers.jsx';
+import MyProfile from './Pages/Dashboard/UserProfile/MyProfile.jsx';
+import TestResults from './Pages/Dashboard/UserProfile/TestResults.jsx';
+
 
 const queryClient = new QueryClient()
 
@@ -59,10 +62,7 @@ const router = createBrowserRouter([
     path: "dashboard",
     element: <Dashboard></Dashboard>, 
     children: [
-      {
-        path: "myAppointments",
-        element: <MyAppointments></MyAppointments>
-      },
+      
       {
         path: "addBanner",
         element: <AddBanner></AddBanner>
@@ -86,8 +86,18 @@ const router = createBrowserRouter([
       {
         path:"allUsers" , 
         element : <AllUsers></AllUsers>
-      }
-     
+      } ,
+      {
+        path: "myAppointments",
+        element: <MyAppointments></MyAppointments>
+      },
+      {
+        path: "myProfile",
+        element: <MyProfile></MyProfile>
+      },{
+        path: "testResult",
+        element: <TestResults></TestResults>
+      },
      
       
     ]
