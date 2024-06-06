@@ -1,5 +1,9 @@
 import { createContext, useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import {
+    getAuth, onAuthStateChanged, createUserWithEmailAndPassword,
+    signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider,
+    signOut, updateProfile, updateEmail
+} from "firebase/auth";
 import app from "../../firebase/firebase.config";
 
 const auth = getAuth(app);
@@ -61,13 +65,37 @@ const AuthProvider = ({ children }) => {
         }
     };
 
+    const updateUserProfile = async (profileData) => {
+        setLoading(true);
+        try {
+            if (user) {
+                await updateProfile(user, {
+                    displayName: profileData.displayName,
+                    photoURL: profileData.photoURL,
+                });
+               
+                if (profileData.email && profileData.email !== user.email) {
+                    await updateEmail(user, profileData.email);
+                }
+                // Refresh the user info
+                const updatedUser = { ...user, ...profileData };
+                setUser(updatedUser);
+            }
+        } catch (error) {
+            throw error;
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const userInfo = {
         user,
         loading,
         createUser,
         loginUser,
         loginUserWithGoogle,
-        logoutUser
+        logoutUser,
+        updateUserProfile,
     };
 
     return (

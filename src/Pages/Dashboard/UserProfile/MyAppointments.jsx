@@ -85,6 +85,7 @@ const MyAppointments = () => {
                         >
                             <div className="flex justify-between items-center">
                                 <div>
+                                    
                                     <div className="text-lg font-semibold">{appointment.name}</div>
                                     <div className="text-gray-600">
                                         <span className="font-semibold">Date:</span> {new Date(appointment.startDate).toLocaleDateString()}
@@ -94,7 +95,7 @@ const MyAppointments = () => {
                                     </div>
                                 </div>
                                 <button
-                                    className="px-4 py-2 bg-red-600 text-white rounded-lg transition-colors duration-300 hover:bg-red-700"
+                                    className="px-4 py-2 bg-red-400 text-white rounded-lg transition-colors duration-300 hover:bg-red-600"
                                     onClick={() => handleCancel(appointment._id)}
                                     disabled={isCanceling}
                                 >
