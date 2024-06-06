@@ -58,7 +58,7 @@ const AllBanners = () => {
         <div className="container mx-auto p-8">
             <ToastContainer></ToastContainer>
             <h2 className="text-2xl font-bold mb-4">All Banners</h2>
-            <table className="min-w-full bg-white">
+            <table className="min-w-full bg-white overflow-x-auto">
                 <thead>
                     <tr>
                         <th className="w-1/6 px-4 py-2">Name</th>
@@ -85,7 +85,7 @@ const AllBanners = () => {
                                     className="px-4 py-2 bg-blue-400 text-white font-bold rounded-lg mr-2"
                                     disabled={banner.isActive}
                                 >
-                                    Set Active
+                                     Active
                                 </button>
                                 <button
                                     onClick={() => handleDelete(banner._id)}
