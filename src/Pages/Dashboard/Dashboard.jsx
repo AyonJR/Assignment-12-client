@@ -47,10 +47,7 @@ const Dashboard = () => {
                                 <RiLayoutHorizontalLine />
                                     All Tests</NavLink>
                                 </li>
-                                <li className="font-semibold"><NavLink to={"/dashboard/reservations"}>
-                                <RiReservedFill />
-                                    Reservations</NavLink>
-                                </li>
+                               
                                 <li className="font-semibold"><NavLink to={"/dashboard/addBanner"}>
                                 <MdAddToQueue />
                                     Add Banner</NavLink>

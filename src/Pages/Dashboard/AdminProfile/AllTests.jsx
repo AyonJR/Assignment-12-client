@@ -32,6 +32,7 @@ const AllTests = () => {
                             <td className="border px-4 py-2">{test.name}</td>
                             <td className="border px-4 py-2">{test.details}</td>
                             <td className="border px-4 py-2">${test.price}</td>
+                            <td className="flex gap-2 m-2"><button className="btn">Update</button> <button className="btn">Delete</button></td>
                             
                         </tr>
                     ))}
