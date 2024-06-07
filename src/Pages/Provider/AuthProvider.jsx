@@ -77,7 +77,6 @@ const AuthProvider = ({ children }) => {
                 if (profileData.email && profileData.email !== user.email) {
                     await updateEmail(user, profileData.email);
                 }
-                // Refresh the user info
                 const updatedUser = { ...user, ...profileData };
                 setUser(updatedUser);
             }

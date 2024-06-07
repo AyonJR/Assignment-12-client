@@ -2,6 +2,7 @@ import useActiveBanner from "../Dashboard/AdminProfile/useActiveBanner";
 
 const Banner = () => {
     const { banner, isLoading, isError } = useActiveBanner();
+    // console.log(banner)
 
     if (isLoading) {
         return <div className="flex justify-center items-center h-screen">Loading...</div>;

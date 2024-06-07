@@ -34,10 +34,8 @@ const MyProfile = () => {
     const handleSave = async () => {
         setIsSaving(true);
         try {
-            // Update profile in Firebase
             await updateUserProfile(profile);
 
-            // Update the user profile in MongoDB
             await axiosSecure.put(`/users/${user.uid}`, profile);
 
             Swal.fire("Success!", "Your profile has been updated.", "success");
@@ -88,7 +86,7 @@ const MyProfile = () => {
                             name="email"
                             value={profile.email}
                             onChange={handleInputChange}
-                            disabled={!isEditing} // Email can be editable if required
+                            disabled={!isEditing} 
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                         />
                     </div>
