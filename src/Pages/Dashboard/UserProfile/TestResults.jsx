@@ -1,13 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../CustomHooks/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
-const UserReports = ({ userId }) => {
+const TestResults = () => {
     const axiosSecure = useAxiosSecure();
+    const { user } = useContext(AuthContext);
 
     const { data: reports = [], isLoading, isError, error } = useQuery({
-        queryKey: ['userReports', userId],
+        queryKey: ['userReports', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/userReports/${userId}`);
+            const res = await axiosSecure.get(`/bookings/${user?.email}`);
             return res.data;
         }
     });
@@ -19,6 +22,20 @@ const UserReports = ({ userId }) => {
     if (isError) {
         return <div className="flex justify-center items-center h-screen">Error: {error.message}</div>;
     }
+
+    const handlePrint = (resultLink) => {
+        const newWindow = window.open(resultLink, '_blank');
+        if (newWindow) {
+            newWindow.onload = () => {
+                newWindow.print();
+            };
+        } else {
+            alert("Failed to open the document. Please check your popup settings.");
+        }
+    };
+
+    // Filter reports to only include those with "Delivered" status
+    const deliveredReports = reports.filter(report => report.reportStatus === 'Delivered');
 
     return (
         <div className="container mx-auto p-8">
@@ -32,16 +49,16 @@ const UserReports = ({ userId }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {reports.length > 0 ? (
-                        reports.map((report) => (
+                    {deliveredReports.length > 0 ? (
+                        deliveredReports.map((report) => (
                             <tr key={report._id}>
                                 <td className="border px-4 py-2">{report.name}</td>
-                                <td className="border px-4 py-2">{new Date(report.date).toLocaleDateString()}</td>
+                                <td className="border px-4 py-2">{new Date(report.data).toLocaleDateString()}</td>
                                 <td className="border px-4 py-2">
                                     <a href={report.resultLink} target="_blank" rel="noopener noreferrer" className="btn bg-blue-400 text-white font-semibold mr-2">
                                         View
                                     </a>
-                                    <button onClick={() => window.open(report.resultLink, '_blank').print()} className="btn bg-green-400 text-white font-semibold mr-2">
+                                    <button onClick={() => handlePrint(report.resultLink)} className="btn bg-green-400 text-white font-semibold mr-2">
                                         Print
                                     </button>
                                     <a href={report.resultLink} download className="btn bg-red-400 text-white font-semibold">
@@ -61,4 +78,4 @@ const UserReports = ({ userId }) => {
     );
 };
 
-export default UserReports;
+export default TestResults;
