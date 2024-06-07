@@ -26,7 +26,7 @@ const Dashboard = () => {
 
 
 
-    const isAdmin = true;
+    const isAdmin = false;
 
 
     return (
