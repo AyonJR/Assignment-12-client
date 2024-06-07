@@ -27,6 +27,7 @@ import AllBanners from './Pages/Dashboard/AdminProfile/AllBanners.jsx';
 import AllUsers from './Pages/Dashboard/AdminProfile/AllUsers.jsx';
 import MyProfile from './Pages/Dashboard/UserProfile/MyProfile.jsx';
 import TestResults from './Pages/Dashboard/UserProfile/TestResults.jsx';
+import UpdateAdminTest from './Pages/Dashboard/AdminProfile/UpdateAdminTest.jsx';
 
 
 const queryClient = new QueryClient()
@@ -98,6 +99,11 @@ const router = createBrowserRouter([
         path: "testResult",
         element: <TestResults></TestResults>
       },
+      {
+        path: 'updateAdminTest/:id' ,
+        element: <UpdateAdminTest></UpdateAdminTest> ,
+        loader: ({params}) => fetch(`http://localhost:5000/updateAdminTest/${params.id}`) 
+      }
      
       
     ]

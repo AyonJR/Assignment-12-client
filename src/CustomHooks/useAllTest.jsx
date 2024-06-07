@@ -1,9 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 
 const useAllTest = () => {
-    
     const axiosSecure = useAxiosSecure();
+    const queryClient = useQueryClient();
+
     const { data: allTest = [], isLoading, isError, error } = useQuery({
         queryKey: ['allTest'],
         queryFn: async () => {
@@ -12,7 +13,8 @@ const useAllTest = () => {
         }
     });
 
-    return [allTest, isLoading, isError, error];
+    // Return the data along with the queryClient to enable invalidation
+    return [allTest, isLoading, isError, error, queryClient];
 };
 
 export default useAllTest;
