@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
 import {
   createBrowserRouter,
@@ -11,10 +10,8 @@ import Main from './Pages/Main/Main.jsx';
 import Login from './Pages/Authentication/Login.jsx';
 import Register from './Pages/Authentication/Register.jsx';
 import AuthProvider from './Pages/Provider/AuthProvider.jsx';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import AllTest from './Routes/AllTest.jsx';
 import Dashboard from './Pages/Dashboard/Dashboard.jsx';
 import MyAppointments from './Pages/Dashboard/UserProfile/MyAppointments.jsx';

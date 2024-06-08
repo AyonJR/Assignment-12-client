@@ -6,10 +6,11 @@ import { IoHomeSharp } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa";
 import { IoBagAdd } from "react-icons/io5";
 import { RiLayoutHorizontalLine } from "react-icons/ri";
-import { RiReservedFill } from "react-icons/ri";
 import { MdAddToQueue } from "react-icons/md";
 import { PiFlagBannerFill } from "react-icons/pi";
 import { SiStatista } from "react-icons/si";
+import useAdmin from "../../CustomHooks/useAdmin";
+
 
 
 
@@ -26,7 +27,8 @@ const Dashboard = () => {
 
 
 
-    const isAdmin = true;
+    const [ isAdmin ]  = useAdmin();
+    // console.log(isAdmin)
 
 
     return (

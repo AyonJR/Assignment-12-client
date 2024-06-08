@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../CustomHooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import useAxiosPublic from "../../../CustomHooks/useAxiosPublic";
 
 const TestResults = () => {
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic()
     const { user } = useContext(AuthContext);
 
     const { data: reports = [], isLoading, isError, error } = useQuery({

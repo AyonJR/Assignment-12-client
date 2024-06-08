@@ -21,6 +21,15 @@ const AllUsers = () => {
         }
     });
 
+    const {data : logInUsers = []} = useQuery({
+        queryKey : ['logInUsers'] , 
+        queryFn : async () => {
+            const res = await axiosSecure.get('/loginUsers')
+            return res.data ;
+        }
+    }
+    )
+
     if (isLoading) {
         return <div className="flex justify-center items-center h-screen">Loading...</div>;
     }
@@ -62,21 +71,21 @@ const AllUsers = () => {
         return acc;
     }, {});
 
-    const handleMakeAdmin = async (booking) => {
+    const handleMakeAdmin = async (user) => {
         try {
-          const res = await axiosSecure.patch(`/loginUsers/admin/${booking._id}`);
+          const res = await axiosSecure.patch(`/loginUsers/admin/${user._id}`);
           console.log(res.data);
           if (res.data.modifiedCount > 0) { 
             refetch()
             Swal.fire({
               title: 'Wow!',
-              text: `${booking.displayName} is admin now!`,
+              text: `${user.displayName} is admin now!`,
               icon: 'success'
             });
           } else {
             Swal.fire({
               title: 'Error!',
-              text: `Failed to make ${booking.displayName} an admin.`,
+              text: `Failed to make ${user.displayName} an admin.`,
               icon: 'error'
             });
           }
@@ -92,6 +101,7 @@ const AllUsers = () => {
       
     return (
         <div className="container mx-auto p-8">
+            <h2>total : {logInUsers.length}</h2>
             <h2 className="text-2xl font-bold mb-4">All Users</h2>
             <table className="min-w-full bg-white overflow-x-auto">
                 <thead>
@@ -102,7 +112,6 @@ const AllUsers = () => {
                         <th className="w-1/6 px-4 py-2">See info</th>
                         <th className="w-1/6 px-4 py-2">Details</th>
                         <th className="w-1/6 px-4 py-2">Status</th>
-                        <th className="w-1/6 px-4 py-2">Role</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -143,13 +152,7 @@ const AllUsers = () => {
                                                     {booking.status === 'active' ? 'Block' : 'Unblock'}
                                                 </button>
                                             </td>
-                                            <td className="border px-4 py-2" rowSpan={groupedBookings[email].length}>
-                                                { booking.role==='admin' ? 'Admin'  : <button 
-                                                    onClick={() => handleMakeAdmin(booking)}
-                                                    className="btn btn-lg bg-blue-400">
-                                                    <FaUsers className="text-white text-2xl" />
-                                                </button> }
-                                            </td>
+                                          
                                         </>
                                     )}
                                 </tr>
@@ -187,6 +190,34 @@ const AllUsers = () => {
                     </div>
                 </Modal>
             )}
+            <div className="mt-20">
+            <table className="w-full bg-white overflow-x-auto">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {logInUsers.map(user => (
+                        <tr key={user.id}>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td>
+                                {
+                                    user.role === 'admin' ? 'Admin' :<button onClick={()=> handleMakeAdmin(user)} className="btn bg-blue-400 btn-lg">
+                                    <FaUsers className="text-white text-2xl"></FaUsers>
+                                </button>
+                                }
+                            </td>
+
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+
+            </div>
             <ToastContainer />
         </div>
     );

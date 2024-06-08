@@ -8,7 +8,6 @@ const Register = () => {
     const [districtData, setDistrictData] = useState([]);
     const [upazilaData, setUpazilaData] = useState([]);
     const { createUser } = useContext(AuthContext);
-    const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
@@ -52,8 +51,10 @@ const Register = () => {
             try {
                 const result = await createUser(email, password);
                 const loggedUser = result.user;
+                form.reset()
 
                 const loggedInUserInfo = { name, email };
+
 
                 const res = await axiosPublic.post('/loginUsers', loggedInUserInfo);
                 if (res.data.insertedId) {
@@ -66,7 +67,7 @@ const Register = () => {
                     });
                 }
 
-                const secureRes = await axiosSecure.post('/users', userInfo);
+                const secureRes = await axiosPublic.post('/users', userInfo);
                 console.log(secureRes.data);
             } catch (error) {
                 console.error("Error during user registration:", error);
