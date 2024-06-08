@@ -94,6 +94,7 @@ const CheckoutForm = ({ testInfo }) => {
                 transactionId: paymentIntent.id,
                 date: new Date(),
                 reportStatus: "pending",
+                status : "active",
                 ...user
             };
 

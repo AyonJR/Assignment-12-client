@@ -6,11 +6,14 @@ import "sweetalert2/dist/sweetalert2.css";
 import { AuthContext } from "../Provider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAxiosPublic from "../../CustomHooks/useAxiosPublic";
 
 const Login = () => { 
-    const { loginUserWithGoogle, loginUser } = useContext(AuthContext);
+    const { loginUserWithGoogle, loginUser  } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic(); 
+    
 
     // login
     const handleLogin = async (e) => {
@@ -37,14 +40,30 @@ const Login = () => {
     // Google login
     const handleGoogleLogin = async () => {
         try {
-            await loginUserWithGoogle();
+            const result = await loginUserWithGoogle();
             Swal.fire({
                 title: 'Success!',
                 text: 'Logged in with Google successfully',
                 icon: 'success',
                 confirmButtonText: 'Cool'
-            }).then(() => {
-                navigate(location?.state?.from || "/");
+            })
+            .then(async (swalResult) => {
+                if (swalResult.isConfirmed) {
+                    navigate(location?.state?.from || "/");
+
+                    const loggedInUserInfo = {
+                        email: result.user?.email,
+                        name: result.user?.displayName,
+                    };
+
+                    try {
+                        const res = await axiosPublic.post('/loginUsers', loggedInUserInfo);
+                        console.log(res.data);
+                        navigate('/');
+                    } catch (error) {
+                        console.error("Error saving user info:", error);
+                    }
+                }
             });
         } catch (error) {
             console.error("Google login error:", error);

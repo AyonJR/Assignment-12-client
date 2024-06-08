@@ -1,14 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../../CustomHooks/useAxiosSecure";
-import { useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import { jsPDF } from "jspdf";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { FaUsers } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
+    const queryClient = useQueryClient();
     const [selectedBooking, setSelectedBooking] = useState(null);
 
-    const { data: allBookings = [], isLoading, isError, error } = useQuery({
+    const { data: allBookings = [], isLoading, isError, error , refetch } = useQuery({
         queryKey: ['allBookings'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/allBookings`);
@@ -37,6 +42,54 @@ const AllUsers = () => {
         doc.save(`${booking.displayName}_details.pdf`);
     };
 
+    const handleStatusChange = async (userId, currentStatus) => {
+        try {
+            const newStatus = currentStatus === "active" ? "blocked" : "active";
+            await axiosSecure.put(`/updateUserStatus/${userId}`, { status: newStatus });
+            queryClient.invalidateQueries('allBookings');
+            toast.success(`User ${newStatus === 'active' ? 'unblocked' : 'blocked'} successfully!`);
+        } catch (error) {
+            console.error("Error updating user status:", error);
+            toast.error("Error updating user status.");
+        }
+    };
+
+    const groupedBookings = allBookings.reduce((acc, booking) => {
+        if (!acc[booking.email]) {
+            acc[booking.email] = [];
+        }
+        acc[booking.email].push(booking);
+        return acc;
+    }, {});
+
+    const handleMakeAdmin = async (booking) => {
+        try {
+          const res = await axiosSecure.patch(`/loginUsers/admin/${booking._id}`);
+          console.log(res.data);
+          if (res.data.modifiedCount > 0) { 
+            refetch()
+            Swal.fire({
+              title: 'Wow!',
+              text: `${booking.displayName} is admin now!`,
+              icon: 'success'
+            });
+          } else {
+            Swal.fire({
+              title: 'Error!',
+              text: `Failed to make ${booking.displayName} an admin.`,
+              icon: 'error'
+            });
+          }
+        } catch (error) {
+          console.error("Error making admin:", error);
+          Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred while making the user an admin.',
+            icon: 'error'
+          });
+        }
+      };
+      
     return (
         <div className="container mx-auto p-8">
             <h2 className="text-2xl font-bold mb-4">All Users</h2>
@@ -48,31 +101,60 @@ const AllUsers = () => {
                         <th className="w-1/4 px-4 py-2">Test</th>
                         <th className="w-1/6 px-4 py-2">See info</th>
                         <th className="w-1/6 px-4 py-2">Details</th>
+                        <th className="w-1/6 px-4 py-2">Status</th>
+                        <th className="w-1/6 px-4 py-2">Role</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {allBookings.map((booking) => (
-                        <tr key={booking._id}>
-                            <td className="border px-4 py-2">{booking.displayName}</td>
-                            <td className="border px-4 py-2">{booking.email}</td>
-                            <td className="border px-4 py-2">{booking.name}</td>
-                            <td className="border px-4 py-2">
-                                <button
-                                    onClick={() => setSelectedBooking(booking)}
-                                    className="bg-blue-500 text-white font-semibold py-1 px-3 w-28 rounded hover:bg-blue-600 transition duration-300"
-                                >
-                                    See info
-                                </button>
-                            </td>
-                            <td className="border px-4 py-2">
-                                <button
-                                    onClick={() => handleDownload(booking)}
-                                    className="bg-green-500 text-white font-semibold py-1 px-3 w-28 rounded hover:bg-green-600 transition duration-300"
-                                >
-                                    Download
-                                </button>
-                            </td>
-                        </tr>
+                    {Object.keys(groupedBookings).map((email) => (
+                        <React.Fragment key={email}>
+                            {groupedBookings[email].map((booking, index) => (
+                                <tr key={booking._id}>
+                                    <td className="border px-4 py-2">{booking.displayName}</td>
+                                    {index === 0 && (
+                                        <td className="border px-4 py-2" rowSpan={groupedBookings[email].length}>
+                                            {email}
+                                        </td>
+                                    )}
+                                    <td className="border px-4 py-2">{booking.name}</td>
+                                    <td className="border px-4 py-2">
+                                        <button
+                                            onClick={() => setSelectedBooking(booking)}
+                                            className="bg-blue-500 text-white font-semibold py-1 px-3 w-28 rounded hover:bg-blue-600 transition duration-300"
+                                        >
+                                            See info
+                                        </button>
+                                    </td>
+                                    <td className="border px-4 py-2">
+                                        <button
+                                            onClick={() => handleDownload(booking)}
+                                            className="bg-green-500 text-white font-semibold py-1 px-3 w-28 rounded hover:bg-green-600 transition duration-300"
+                                        >
+                                            Download
+                                        </button>
+                                    </td>
+                                    {index === 0 && (
+                                        <>
+                                            <td className="border px-4 py-2" rowSpan={groupedBookings[email].length}>
+                                                <button
+                                                    onClick={() => handleStatusChange(booking.uid, booking.status)}
+                                                    className={`font-semibold py-1 px-3 w-28 rounded transition duration-300 ${booking.status === 'active' ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'}`}
+                                                >
+                                                    {booking.status === 'active' ? 'Block' : 'Unblock'}
+                                                </button>
+                                            </td>
+                                            <td className="border px-4 py-2" rowSpan={groupedBookings[email].length}>
+                                                { booking.role==='admin' ? 'Admin'  : <button 
+                                                    onClick={() => handleMakeAdmin(booking)}
+                                                    className="btn btn-lg bg-blue-400">
+                                                    <FaUsers className="text-white text-2xl" />
+                                                </button> }
+                                            </td>
+                                        </>
+                                    )}
+                                </tr>
+                            ))}
+                        </React.Fragment>
                     ))}
                 </tbody>
             </table>
@@ -105,6 +187,7 @@ const AllUsers = () => {
                     </div>
                 </Modal>
             )}
+            <ToastContainer />
         </div>
     );
 };
