@@ -25,6 +25,7 @@ import AllUsers from './Pages/Dashboard/AdminProfile/AllUsers.jsx';
 import MyProfile from './Pages/Dashboard/UserProfile/MyProfile.jsx';
 import TestResults from './Pages/Dashboard/UserProfile/TestResults.jsx';
 import UpdateAdminTest from './Pages/Dashboard/AdminProfile/UpdateAdminTest.jsx';
+import PrivateRoute from './Routes/PrivateRoute.jsx';
 
 
 const queryClient = new QueryClient()
@@ -87,14 +88,14 @@ const router = createBrowserRouter([
       } ,
       {
         path: "myAppointments",
-        element: <MyAppointments></MyAppointments>
+        element: <PrivateRoute><MyAppointments></MyAppointments></PrivateRoute>
       },
       {
         path: "myProfile",
-        element: <MyProfile></MyProfile>
+        element:<PrivateRoute> <MyProfile></MyProfile></PrivateRoute>
       },{
         path: "testResult",
-        element: <TestResults></TestResults>
+        element: <PrivateRoute><TestResults></TestResults></PrivateRoute>
       },
       {
         path: 'updateAdminTest/:id' ,

@@ -14,8 +14,8 @@ const AddTest = () => {
 
     const [state, setState] = useState([
         {
-            startDate: new Date(),
-            endDate: new Date(), // Set the initial endDate to avoid null issues
+            startDate: new Date().toISOString().split('T')[0],
+            endDate: new Date().toISOString().split('T')[0], // Set the initial endDate to avoid null issues
             key: 'selection'
         }
     ]);

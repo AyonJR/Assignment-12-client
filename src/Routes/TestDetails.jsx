@@ -8,6 +8,7 @@ import CheckoutForm from './CheckoutForm';
 import { AuthContext } from '../Pages/Provider/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from '../Pages/shared/Navbar';
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
@@ -61,7 +62,11 @@ const TestDetails = () => {
    }
 
     return (
-        <div className="container mx-auto p-8">
+        <div>
+            <div>
+                <Navbar></Navbar>
+            </div>
+            <div className="container mx-auto p-8">
             <ToastContainer />
             <div className="max-w-4xl mx-auto bg-white border rounded-lg shadow-lg overflow-hidden">
                 <img src={singleTest.image} alt={singleTest.title} className="w-full h-60 object-cover" />
@@ -100,6 +105,7 @@ const TestDetails = () => {
                     </div>
                 </div>
             )}
+        </div>
         </div>
     );
 };
