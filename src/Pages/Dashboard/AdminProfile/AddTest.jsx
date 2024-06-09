@@ -35,7 +35,7 @@ const AddTest = () => {
         name : data.name ,
         image : data.image ,
         price : data.price ,
-        slots : data.slots ,
+        slots : parseInt(data.slots) ,
         details : data.details ,
         startDate : data.startDate ,
         endDate : data.endDate

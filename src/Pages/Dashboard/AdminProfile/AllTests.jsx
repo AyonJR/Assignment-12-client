@@ -85,8 +85,8 @@ const AllTests = ({ queryClient }) => {
     return (
       <div> 
         
-          <div className="container mx-auto p-8 mt-14">
-            <table className="min-w-full bg-white overflow-x-auto">
+          <div className=" p-8 mt-14">
+           <table className="min-w-full bg-white overflow-x-scroll ">
                 <thead>
                     <tr>
                         <th className="w-1/3 px-4 py-2">Title</th>
@@ -111,6 +111,7 @@ const AllTests = ({ queryClient }) => {
                 </tbody>
             </table>
 
+           </div>
             {/* Render the update modal if a test is being edited */}
             {isModalOpen && <UpdateModal test={editTest} onClose={() => setIsModalOpen(false)} onUpdate={handleUpdate} />}
 
@@ -118,7 +119,6 @@ const AllTests = ({ queryClient }) => {
                 <AllReservations />
             </div>
         </div>
-      </div>
     );
 };
 

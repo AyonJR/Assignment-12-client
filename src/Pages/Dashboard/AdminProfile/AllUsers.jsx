@@ -109,8 +109,10 @@ const AllUsers = () => {
 
     return (
         <div className="container mx-auto p-8">
-            <h2>total : {logInUsers.length}</h2>
-            <h2 className="text-2xl font-bold mb-4">All Users</h2>
+             <div className="flex justify-center">
+             <h2 className="text-2xl font-bold mb-4">All Users</h2>
+
+             </div>
             <div className="overflow-x-auto">
                 <table className="w-full bg-white">
                     <thead>
@@ -200,31 +202,33 @@ const AllUsers = () => {
                 </Modal>
             )}
 
-            <div className="mt-20 overflow-x-auto">
-                <table className="w-full bg-white">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {logInUsers.map(user => (
-                            <tr key={user.id}>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>
-                                    {user.role === 'admin' ? 'Admin' : (
-                                        <button onClick={() => handleMakeAdmin(user)} className="btn bg-blue-400 btn-lg">
-                                            <FaUsers className="text-white text-2xl" />
-                                        </button>
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <div className="mt-20 ">
+            <table className="w-full bg-white overflow-x-auto">
+    <thead>
+        <tr>
+            <th className="px-4 py-2 text-left">Name</th>
+            <th className="px-4 py-2 text-left">Email</th>
+            <th className="px-4 py-2 text-center">Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        {logInUsers.slice(1).map(user => (
+            <tr key={user.id}>
+                <td className="border px-4 py-2">{user.name}</td>
+                <td className="border px-4 py-2">{user.email}</td>
+                <td className="border px-4 py-2 text-center">
+                    {user.role === 'admin' ? 'Admin' : (
+                        <button onClick={() => handleMakeAdmin(user)} className="btn bg-blue-400 btn-lg">
+                            <FaUsers className="text-white text-2xl" />
+                        </button>
+                    )}
+                </td>
+            </tr>
+        ))}
+    </tbody>
+</table>
+
+
             </div>
 
             <ToastContainer />

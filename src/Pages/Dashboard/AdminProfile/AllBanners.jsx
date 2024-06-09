@@ -55,10 +55,11 @@ const AllBanners = () => {
     }
 
     return (
-        <div className="container mx-auto p-8">
+        <div >
             <ToastContainer></ToastContainer>
-            <h2 className="text-2xl font-bold mb-4">All Banners</h2>
-            <table className="min-w-full bg-white overflow-x-auto">
+            <h2 className="text-2xl p-8 font-bold mb-4">All Banners</h2>
+            <div className='p-8'>
+            <table className="min-w-full bg-white overflow-x-scroll">
                 <thead>
                     <tr>
                         <th className="w-1/6 px-4 py-2">Name</th>
@@ -98,6 +99,7 @@ const AllBanners = () => {
                     ))}
                 </tbody>
             </table>
+            </div>
         </div>
     );
 };

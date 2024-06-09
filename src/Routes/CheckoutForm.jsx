@@ -4,6 +4,7 @@ import useAxiosSecure from "../CustomHooks/useAxiosSecure";
 import { AuthContext } from "../Pages/Provider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import useActiveBanner from "../Pages/Dashboard/AdminProfile/useActiveBanner";
+import useAxiosPublic from "../CustomHooks/useAxiosPublic";
 
 const CheckoutForm = ({ testInfo }) => {
     const [error, setError] = useState('');
@@ -17,6 +18,7 @@ const CheckoutForm = ({ testInfo }) => {
     const [discountedPrice, setDiscountedPrice] = useState(testInfo.price);
 
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic()
 
     useEffect(() => {
         if (testInfo?.price && testInfo?.price > 1) {
@@ -101,7 +103,7 @@ const CheckoutForm = ({ testInfo }) => {
             console.log(paymentInfo);
 
             // Posting test method
-            const userTest = await axiosSecure.post('/userTest', paymentInfo);
+            const userTest = await axiosPublic.post('/userTest', paymentInfo);
             console.log(userTest.data);
             if (userTest.data.insertedId) {
                 // Show success toast here

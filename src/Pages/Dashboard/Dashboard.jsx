@@ -52,7 +52,7 @@ const Dashboard = () => {
     }
 
     return (
-        <div>
+        <div> 
             {/* Drawer */}
             <div className="drawer ml-10 mt-10 lg:hidden">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" onChange={() => setIsDrawerOpen(!isDrawerOpen)} />
@@ -130,7 +130,9 @@ const Dashboard = () => {
                     </ul>
                 </div>
             </div>
+               <div>
 
+               </div>
             <div className="flex">
                 {!isDrawerOpen && (
                     <div className="w-64 min-h-screen bg-blue-400 hidden lg:block">

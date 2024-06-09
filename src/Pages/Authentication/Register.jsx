@@ -3,12 +3,14 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../CustomHooks/useAxiosSecure";
 import useAxiosPublic from "../../CustomHooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     const [districtData, setDistrictData] = useState([]);
     const [upazilaData, setUpazilaData] = useState([]);
     const { createUser } = useContext(AuthContext);
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch('District.json')
@@ -52,7 +54,7 @@ const Register = () => {
                 const result = await createUser(email, password);
                 const loggedUser = result.user;
                 form.reset()
-
+                navigate('/dashboard')
                 const loggedInUserInfo = { name, email };
 
 
