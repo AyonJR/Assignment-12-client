@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Bar } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 import useAxiosSecure from "../../../CustomHooks/useAxiosSecure";
 import {
     Chart as ChartJS,
@@ -9,6 +9,7 @@ import {
     Title,
     Tooltip,
     Legend,
+    ArcElement,
 } from 'chart.js';
 
 ChartJS.register(
@@ -17,7 +18,8 @@ ChartJS.register(
     BarElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    ArcElement
 );
 
 const MostBookedServicesChart = () => {
@@ -79,8 +81,61 @@ const MostBookedServicesChart = () => {
 
     return (
         <div className="container mx-auto p-8">
-            <h3 className="text-2xl font-bold mb-4">Most Booked Services</h3>
+           <div className="flex justify-center">
+           <h3 className="text-2xl font-bold mb-4">Most Booked Services</h3>
+           </div>
             <Bar data={chartData} />
+            <ServiceDeliveryRatioChart allBookings={allBookings} />
+        </div>
+    );
+};
+
+const ServiceDeliveryRatioChart = ({ allBookings }) => {
+    // Process data to count pending and completed bookings
+    const statusCounts = allBookings.reduce((acc, booking) => {
+        const status = booking.reportStatus;
+        if (status) {
+            if (acc[status]) {
+                acc[status]++;
+            } else {
+                acc[status] = 1;
+            }
+        } else {
+            console.warn('Booking without status:', booking);
+        }
+        return acc;
+    }, {});
+
+    // Debugging: Print statusCounts
+    console.log('Service Status Counts:', statusCounts);
+
+    const statusNames = Object.keys(statusCounts);
+    const statusData = Object.values(statusCounts);
+
+    // Chart Data for Pie Chart
+    const pieChartData = {
+        labels: statusNames,
+        datasets: [
+            {
+                label: 'Service Delivery Status',
+                data: statusData,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',  // Color for "pending"
+                    'rgba(54, 162, 235, 0.6)'  // Color for "completed"
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1,
+            },
+        ],
+    };
+
+    return (
+        <div className="container mx-auto p-8" style={{ maxWidth: '400px', margin: '0 auto' }}>
+            <h3 className="text-2xl font-bold mb-4">Service Delivery Status Ratio</h3>
+            <Pie data={pieChartData} width={300} height={300} />
         </div>
     );
 };
