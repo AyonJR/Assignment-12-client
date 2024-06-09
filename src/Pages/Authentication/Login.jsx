@@ -7,6 +7,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAxiosPublic from "../../CustomHooks/useAxiosPublic";
+import Navbar from "../shared/Navbar";
 
 const Login = () => { 
     const { loginUserWithGoogle, loginUser  } = useContext(AuthContext);
@@ -24,8 +25,13 @@ const Login = () => {
 
         try {
             await loginUser(email, password);
+            Swal.fire({
+                title: 'Success!',
+                text: 'Logged in successfully',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            })
             navigate(location?.state?.from || '/dashboard');
-            toast.success("Logged in successfully!");
         } catch (error) {
             console.error("Login Error:", error);
             Swal.fire({
@@ -38,54 +44,57 @@ const Login = () => {
     };
 
     // Google login
-    const handleGoogleLogin = async () => {
-        try {
-            const result = await loginUserWithGoogle();
-            Swal.fire({
-                title: 'Success!',
-                text: 'Logged in with Google successfully',
-                icon: 'success',
-                confirmButtonText: 'Cool'
-            })
-            .then(async (swalResult) => {
-                if (swalResult.isConfirmed) {
-                    navigate(location?.state?.from || "/");
+    // const handleGoogleLogin = async () => {
+    //     try {
+    //         const result = await loginUserWithGoogle();
+    //         Swal.fire({
+    //             title: 'Success!',
+    //             text: 'Logged in with Google successfully',
+    //             icon: 'success',
+    //             confirmButtonText: 'Cool'
+    //         })
+    //         .then(async (swalResult) => {
+    //             if (swalResult.isConfirmed) {
+    //                 navigate(location?.state?.from || "/");
 
-                    const loggedInUserInfo = {
-                        email: result.user?.email,
-                        name: result.user?.displayName,
-                    };
+    //                 const loggedInUserInfo = {
+    //                     email: result.user?.email,
+    //                     name: result.user?.displayName,
+    //                 };
 
-                    try {
-                        const res = await axiosPublic.post('/loginUsers', loggedInUserInfo);
-                        console.log(res.data);
-                        navigate('/');
-                    } catch (error) {
-                        console.error("Error saving user info:", error);
-                    }
-                }
-            });
-        } catch (error) {
-            console.error("Google login error:", error);
-            Swal.fire({
-                title: 'Error!',
-                text: 'Google login failed',
-                icon: 'error',
-                confirmButtonText: 'OK'
-            });
-        }
-    };
+    //                 try {
+    //                     const res = await axiosPublic.post('/loginUsers', loggedInUserInfo);
+    //                     console.log(res.data);
+    //                     navigate('/');
+    //                 } catch (error) {
+    //                     console.error("Error saving user info:", error);
+    //                 }
+    //             }
+    //         });
+    //     } catch (error) {
+    //         console.error("Google login error:", error);
+    //         Swal.fire({
+    //             title: 'Error!',
+    //             text: 'Google login failed',
+    //             icon: 'error',
+    //             confirmButtonText: 'OK'
+    //         });
+    //     }
+    // };
 
     return (
-        <div className="flex justify-center">
-            <ToastContainer />
-            <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
-                <h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
+        <div>
+            <div>
+                <Navbar></Navbar>
+            </div>
+            <div className="flex justify-center">
+            <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 ">
+                <h2 className="mb-3 text-3xl font-semibold text-center text-blue-400">Login</h2>
                 <p className="text-sm text-center dark:text-gray-600">
                     Don't have an account?
                     <Link to={"/register"} className="focus:underline hover:underline dark:text-violet-600"> Sign up here</Link>
                 </p> 
-                <div className="my-6 space-y-4">
+                {/* <div className="my-6 space-y-4">
                     <button
                         aria-label="Login with Google"
                         type="button"
@@ -97,12 +106,8 @@ const Login = () => {
                         </svg>
                         <p>Login with Google</p>
                     </button>
-                </div>
-                <div className="flex items-center w-full my-4">
-                    <hr className="w-full dark:text-gray-600" />
-                    <p className="px-3 dark:text-gray-600">OR</p>
-                    <hr className="w-full dark:text-gray-600" />
-                </div>
+                </div> */}
+                
                 <form onSubmit={handleLogin} className="space-y-8">
                     <div className="space-y-4">
                         <div className="space-y-2">
@@ -116,9 +121,12 @@ const Login = () => {
                             <input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
                         </div>
                     </div>
-                    <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-gray-700 dark:text-gray-50">Sign in</button>
+                   <div className="flex justify-center">
+                   <button type="submit" className=" px-8 py-3 font-semibold rounded-md bg-blue-400 text-white">Sign in</button>
+                   </div>
                 </form>
             </div>
+        </div>
         </div>
     );
 };

@@ -3,6 +3,7 @@ import useAxiosPublic from '../../CustomHooks/useAxiosPublic';
 
 const FeaturedTests = () => {
     const axiosPublic = useAxiosPublic();
+    
 
     const { data: allBookings = [], isLoading, isError, error } = useQuery({
         queryKey: ['allBookings'],

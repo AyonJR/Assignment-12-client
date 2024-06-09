@@ -3,7 +3,8 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../CustomHooks/useAxiosSecure";
 import useAxiosPublic from "../../CustomHooks/useAxiosPublic";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../shared/Navbar";
 
 const Register = () => {
     const [districtData, setDistrictData] = useState([]);
@@ -86,11 +87,19 @@ const Register = () => {
 
     return (
         <div>
+            <div>
+                <Navbar></Navbar>
+            </div>
+            <div>
             <section className="max-w-4xl mt-5 p-6 mx-auto bg-white rounded-md shadow-md ">
                 <form onSubmit={handleSubmit}>
                     <div className="flex justify-center">
                         <h2 className="text-3xl font-semibold text-blue-400">Sign Up</h2>
                     </div>
+                    <p className="text-sm my-5 text-center dark:text-gray-600">
+                    Already have an account?
+                    <Link to={"/login"} className="focus:underline hover:underline dark:text-violet-600"> Login here</Link>
+                </p> 
                     <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div>
                             <label htmlFor="username">Username</label>
@@ -143,6 +152,7 @@ const Register = () => {
                     </div>
                 </form>
             </section>
+        </div>
         </div>
     );
 };
