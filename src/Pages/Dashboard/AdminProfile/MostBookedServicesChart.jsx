@@ -33,12 +33,10 @@ const MostBookedServicesChart = () => {
         }
     });
 
-    // Debugging: Print allBookings
     console.log('All Bookings:', allBookings);
 
-    // Process data to count bookings for each service
     const serviceBookingCounts = allBookings.reduce((acc, booking) => {
-        const serviceName = booking.name; // Use 'name' property for the service name
+        const serviceName = booking.name; 
         if (serviceName) {
             if (acc[serviceName]) {
                 acc[serviceName]++;
@@ -51,7 +49,6 @@ const MostBookedServicesChart = () => {
         return acc;
     }, {});
 
-    // Debugging: Print serviceBookingCounts
     console.log('Service Booking Counts:', serviceBookingCounts);
 
     const serviceNames = Object.keys(serviceBookingCounts);
@@ -91,7 +88,6 @@ const MostBookedServicesChart = () => {
 };
 
 const ServiceDeliveryRatioChart = ({ allBookings }) => {
-    // Process data to count pending and completed bookings
     const statusCounts = allBookings.reduce((acc, booking) => {
         const status = booking.reportStatus;
         if (status) {
@@ -106,13 +102,11 @@ const ServiceDeliveryRatioChart = ({ allBookings }) => {
         return acc;
     }, {});
 
-    // Debugging: Print statusCounts
     console.log('Service Status Counts:', statusCounts);
 
     const statusNames = Object.keys(statusCounts);
     const statusData = Object.values(statusCounts);
 
-    // Chart Data for Pie Chart
     const pieChartData = {
         labels: statusNames,
         datasets: [
@@ -120,8 +114,8 @@ const ServiceDeliveryRatioChart = ({ allBookings }) => {
                 label: 'Service Delivery Status',
                 data: statusData,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)',  // Color for "pending"
-                    'rgba(54, 162, 235, 0.6)'  // Color for "completed"
+                    'rgba(255, 99, 132, 0.6)', 
+                    'rgba(54, 162, 235, 0.6)'  
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
