@@ -83,7 +83,9 @@ const AllTests = ({ queryClient }) => {
     };
 
     return (
-        <div className="container mx-auto p-8">
+      <div> 
+        
+          <div className="container mx-auto p-8 mt-14">
             <table className="min-w-full bg-white overflow-x-auto">
                 <thead>
                     <tr>
@@ -116,6 +118,7 @@ const AllTests = ({ queryClient }) => {
                 <AllReservations />
             </div>
         </div>
+      </div>
     );
 };
 
