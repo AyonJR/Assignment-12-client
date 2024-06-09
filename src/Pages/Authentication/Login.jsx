@@ -24,7 +24,7 @@ const Login = () => {
 
         try {
             await loginUser(email, password);
-            navigate(location?.state?.from || '/');
+            navigate(location?.state?.from || '/dashboard');
             toast.success("Logged in successfully!");
         } catch (error) {
             console.error("Login Error:", error);

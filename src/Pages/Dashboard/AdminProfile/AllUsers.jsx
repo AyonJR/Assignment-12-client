@@ -13,7 +13,7 @@ const AllUsers = () => {
     const queryClient = useQueryClient();
     const [selectedBooking, setSelectedBooking] = useState(null);
 
-    const { data: allBookings = [], isLoading, isError, error , refetch } = useQuery({
+    const { data: allBookings = [], isLoading, isError, error, refetch } = useQuery({
         queryKey: ['allBookings'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/allBookings`);
@@ -21,14 +21,13 @@ const AllUsers = () => {
         }
     });
 
-    const {data : logInUsers = []} = useQuery({
-        queryKey : ['logInUsers'] , 
-        queryFn : async () => {
-            const res = await axiosSecure.get('/loginUsers')
-            return res.data ;
+    const { data: logInUsers = [] } = useQuery({
+        queryKey: ['logInUsers'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/loginUsers');
+            return res.data;
         }
-    }
-    )
+    });
 
     if (isLoading) {
         return <div className="flex justify-center items-center h-screen">Loading...</div>;
@@ -54,15 +53,24 @@ const AllUsers = () => {
     const handleStatusChange = async (userId, currentStatus) => {
         try {
             const newStatus = currentStatus === "active" ? "blocked" : "active";
-            await axiosSecure.put(`/updateUserStatus/${userId}`, { status: newStatus });
-            queryClient.invalidateQueries('allBookings');
-            toast.success(`User ${newStatus === 'active' ? 'unblocked' : 'blocked'} successfully!`);
+            console.log(`Updating user ${userId} to ${newStatus}`);  // Add this line
+    
+            const res = await axiosSecure.put(`/updateUserStatus/${userId}`, { status: newStatus });
+            console.log(res.data);
+    
+            if (res.data.success) {
+                queryClient.invalidateQueries('allBookings');
+                refetch();
+                toast.success(`User ${newStatus === 'active' ? 'unblocked' : 'blocked'} successfully!`);
+            } else {
+                toast.error(res.data.message);
+            }
         } catch (error) {
             console.error("Error updating user status:", error);
             toast.error("Error updating user status.");
         }
     };
-
+    
     const groupedBookings = allBookings.reduce((acc, booking) => {
         if (!acc[booking.email]) {
             acc[booking.email] = [];
@@ -73,94 +81,95 @@ const AllUsers = () => {
 
     const handleMakeAdmin = async (user) => {
         try {
-          const res = await axiosSecure.patch(`/loginUsers/admin/${user._id}`);
-          console.log(res.data);
-          if (res.data.modifiedCount > 0) { 
-            refetch()
-            Swal.fire({
-              title: 'Wow!',
-              text: `${user.displayName} is admin now!`,
-              icon: 'success'
-            });
-          } else {
-            Swal.fire({
-              title: 'Error!',
-              text: `Failed to make ${user.displayName} an admin.`,
-              icon: 'error'
-            });
-          }
+            const res = await axiosSecure.patch(`/loginUsers/admin/${user._id}`);
+            console.log(res.data);
+            if (res.data.modifiedCount > 0) {
+                refetch();
+                Swal.fire({
+                    title: 'Wow!',
+                    text: `${user.displayName} is admin now!`,
+                    icon: 'success'
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: `Failed to make ${user.displayName} an admin.`,
+                    icon: 'error'
+                });
+            }
         } catch (error) {
-          console.error("Error making admin:", error);
-          Swal.fire({
-            title: 'Error!',
-            text: 'An error occurred while making the user an admin.',
-            icon: 'error'
-          });
+            console.error("Error making admin:", error);
+            Swal.fire({
+                title: 'Error!',
+                text: 'An error occurred while making the user an admin.',
+                icon: 'error'
+            });
         }
-      };
-      
+    };
+
     return (
         <div className="container mx-auto p-8">
             <h2>total : {logInUsers.length}</h2>
             <h2 className="text-2xl font-bold mb-4">All Users</h2>
-            <table className="min-w-full bg-white overflow-x-auto">
-                <thead>
-                    <tr>
-                        <th className="w-1/4 px-4 py-2">Name</th>
-                        <th className="w-1/4 px-4 py-2">Email</th>
-                        <th className="w-1/4 px-4 py-2">Test</th>
-                        <th className="w-1/6 px-4 py-2">See info</th>
-                        <th className="w-1/6 px-4 py-2">Details</th>
-                        <th className="w-1/6 px-4 py-2">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Object.keys(groupedBookings).map((email) => (
-                        <React.Fragment key={email}>
-                            {groupedBookings[email].map((booking, index) => (
-                                <tr key={booking._id}>
-                                    <td className="border px-4 py-2">{booking.displayName}</td>
-                                    {index === 0 && (
-                                        <td className="border px-4 py-2" rowSpan={groupedBookings[email].length}>
-                                            {email}
-                                        </td>
-                                    )}
-                                    <td className="border px-4 py-2">{booking.name}</td>
-                                    <td className="border px-4 py-2">
-                                        <button
-                                            onClick={() => setSelectedBooking(booking)}
-                                            className="bg-blue-500 text-white font-semibold py-1 px-3 w-28 rounded hover:bg-blue-600 transition duration-300"
-                                        >
-                                            See info
-                                        </button>
-                                    </td>
-                                    <td className="border px-4 py-2">
-                                        <button
-                                            onClick={() => handleDownload(booking)}
-                                            className="bg-green-500 text-white font-semibold py-1 px-3 w-28 rounded hover:bg-green-600 transition duration-300"
-                                        >
-                                            Download
-                                        </button>
-                                    </td>
-                                    {index === 0 && (
-                                        <>
+            <div className="overflow-x-auto">
+                <table className="w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th className="w-1/4 px-4 py-2">Name</th>
+                            <th className="w-1/4 px-4 py-2">Email</th>
+                            <th className="w-1/4 px-4 py-2">Test</th>
+                            <th className="w-1/6 px-4 py-2">See info</th>
+                            <th className="w-1/6 px-4 py-2">Details</th>
+                            <th className="w-1/6 px-4 py-2">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Object.keys(groupedBookings).map((email) => (
+                            <React.Fragment key={email}>
+                                {groupedBookings[email].map((booking, index) => (
+                                    <tr key={booking._id}>
+                                        <td className="border px-4 py-2">{booking.displayName}</td>
+                                        {index === 0 && (
                                             <td className="border px-4 py-2" rowSpan={groupedBookings[email].length}>
-                                                <button
-                                                    onClick={() => handleStatusChange(booking.uid, booking.status)}
-                                                    className={`font-semibold py-1 px-3 w-28 rounded transition duration-300 ${booking.status === 'active' ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'}`}
-                                                >
-                                                    {booking.status === 'active' ? 'Block' : 'Unblock'}
-                                                </button>
+                                                {email}
                                             </td>
-                                          
-                                        </>
-                                    )}
-                                </tr>
-                            ))}
-                        </React.Fragment>
-                    ))}
-                </tbody>
-            </table>
+                                        )}
+                                        <td className="border px-4 py-2">{booking.name}</td>
+                                        <td className="border px-4 py-2">
+                                            <button
+                                                onClick={() => setSelectedBooking(booking)}
+                                                className="bg-blue-500 text-white font-semibold py-1 px-3 w-28 rounded hover:bg-blue-600 transition duration-300"
+                                            >
+                                                See info
+                                            </button>
+                                        </td>
+                                        <td className="border px-4 py-2">
+                                            <button
+                                                onClick={() => handleDownload(booking)}
+                                                className="bg-green-500 text-white font-semibold py-1 px-3 w-28 rounded hover:bg-green-600 transition duration-300"
+                                            >
+                                                Download
+                                            </button>
+                                        </td>
+                                        {index === 0 && (
+                                            <>
+                                                <td className="border px-4 py-2" rowSpan={groupedBookings[email].length}>
+                                                    <button
+                                                        onClick={() => handleStatusChange(booking.uid, booking.status)}
+                                                        className={`font-semibold py-1 px-3 w-28 rounded transition duration-300 ${booking.status === 'active' ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'}`}
+                                                    >
+                                                        {booking.status === 'active' ? 'Block' : 'Unblock'}
+                                                    </button>
+                                                </td>
+                                            </>
+                                        )}
+                                    </tr>
+                                ))}
+                            </React.Fragment>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
 
             {selectedBooking && (
                 <Modal
@@ -190,34 +199,34 @@ const AllUsers = () => {
                     </div>
                 </Modal>
             )}
-            <div className="mt-20">
-            <table className="w-full bg-white overflow-x-auto">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {logInUsers.map(user => (
-                        <tr key={user.id}>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                            <td>
-                                {
-                                    user.role === 'admin' ? 'Admin' :<button onClick={()=> handleMakeAdmin(user)} className="btn bg-blue-400 btn-lg">
-                                    <FaUsers className="text-white text-2xl"></FaUsers>
-                                </button>
-                                }
-                            </td>
 
+            <div className="mt-20 overflow-x-auto">
+                <table className="w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-
+                    </thead>
+                    <tbody>
+                        {logInUsers.map(user => (
+                            <tr key={user.id}>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                <td>
+                                    {user.role === 'admin' ? 'Admin' : (
+                                        <button onClick={() => handleMakeAdmin(user)} className="btn bg-blue-400 btn-lg">
+                                            <FaUsers className="text-white text-2xl" />
+                                        </button>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
+
             <ToastContainer />
         </div>
     );

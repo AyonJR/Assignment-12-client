@@ -101,8 +101,8 @@ const AllTests = ({ queryClient }) => {
                             <td className="border px-4 py-2">${test.price}</td>
                             <td className="flex gap-2 m-2">
                                 <Link to={`/dashboard/updateAdminTest/${test._id}`}>
-                                <button className="btn" onClick={() => handleEdit(test)}>Update</button></Link>
-                                <button className="btn" onClick={() => handleDelete(test._id)}>Delete</button>
+                                <button className="btn bg-blue-400 text-white font-semibold" onClick={() => handleEdit(test)}>Update</button></Link>
+                                <button className="btn bg-red-400 text-white font-semibold" onClick={() => handleDelete(test._id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

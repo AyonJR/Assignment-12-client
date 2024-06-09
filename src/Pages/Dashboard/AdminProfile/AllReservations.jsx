@@ -116,10 +116,10 @@ const AllReservations = () => {
                                 <td className="border px-4 py-2">{booking.name}</td>
                                 <td className="border px-4 py-2">{new Date(booking.date).toLocaleDateString()}</td>
                                 <td className="border px-4 py-2">
-                                    <button className="btn bg-blue-400 text-white font-semibold" onClick={() => handleCancel(booking._id)}>Cancel</button>
+                                    <button className="btn bg-red-400 text-white font-semibold" onClick={() => handleCancel(booking._id)}>Cancel</button>
                                     <button className="btn bg-green-400 text-white font-semibold" onClick={() => setCurrentBooking(booking)}>Submit Result</button>
                                 </td>
-                                <td className="border px-4 py-2">{booking.reportStatus}</td>
+                                <td className="border font-bold text-blue-600 px-4 py-2">{booking.reportStatus}</td>
                             </tr>
                         ))
                     ) : (
