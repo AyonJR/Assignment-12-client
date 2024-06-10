@@ -32,7 +32,7 @@ const Login = () => {
                 icon: 'success',
                 confirmButtonText: 'Cool'
             })
-            navigate(location?.state?.from || '/dashboard');
+            navigate(location?.state?.from || '/');
         } catch (error) {
             console.error("Login Error:", error);
             Swal.fire({

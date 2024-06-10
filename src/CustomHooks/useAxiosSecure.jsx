@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Pages/Provider/AuthProvider";
 
 export const axiosSecure = axios.create({
-    baseURL: 'https://final-assignment-12-server.vercel.app'
+    baseURL: 'http://localhost:5000'
 })
 
 const useAxiosSecure = () => {
@@ -36,7 +36,7 @@ const useAxiosSecure = () => {
     const status = error.response.status ;
     if(status === 401 || status === 403){
         await logoutUser()
-     navigate('/login')
+    //  navigate('/login')
     }
     return Promise.reject(error)
 
