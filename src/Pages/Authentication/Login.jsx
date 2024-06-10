@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAxiosPublic from "../../CustomHooks/useAxiosPublic";
 import Navbar from "../shared/Navbar";
+import Footer from "../shared/Footer";
 
 const Login = () => { 
     const { loginUserWithGoogle, loginUser  } = useContext(AuthContext);
@@ -122,11 +123,14 @@ const Login = () => {
                         </div>
                     </div>
                    <div className="flex justify-center">
-                   <button type="submit" className=" px-8 py-3 font-semibold rounded-md bg-blue-400 text-white">Sign in</button>
+                   <button type="submit" className=" px-8 py-3 font-semibold rounded-md bg-blue-400 text-white">Log in</button>
                    </div>
                 </form>
             </div>
         </div>
+        <div className="mt-40">
+                <Footer></Footer>
+            </div>
         </div>
     );
 };

@@ -1,8 +1,32 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# assignment_category_0004
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+# LabX
+- Live site link  [ https://final-assignment-12-ea1ec.web.app/ ]
+- adminEmail - bhai60diyen@gmail.com
+- adminPassword - bhai60diyen
+
+
+# Features and Characteristics 
+
+-  Comprehensive diagnostic services: Imaging, lab tests, and specialized procedures.
+- State-of-the-art equipment for accurate results.
+- Experienced medical professionals ensure quality.
+- Convenient location, easy access, and ample parking.
+- Fast turnaround time for test results.
+- Personalized patient care and tailored plans.
+- Online appointment booking for convenience.
+- Accepted insurance plans and flexible payment options.
+- Health education resources for patient empowerment.
+- Patient testimonials showcase service quality.
+
+
+
+
+
+
+
+

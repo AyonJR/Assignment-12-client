@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';  // Import AOS styles
 import Navbar from '../Pages/shared/Navbar';
+import Footer from '../Pages/shared/Footer';
 
 const HealthPackages = () => {
     useEffect(() => {
@@ -107,6 +108,9 @@ const HealthPackages = () => {
                 <button className="btn bg-green-500 text-white text-xl px-8 py-4">Book Now</button>
             </section>
         </div>
+        <div className="mt-40">
+                <Footer></Footer>
+            </div>
         </div>
     );
 };

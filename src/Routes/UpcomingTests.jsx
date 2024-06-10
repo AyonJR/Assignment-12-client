@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Navbar from '../Pages/shared/Navbar';
+import Footer from '../Pages/shared/Footer';
 
 const upcomingTestsData = [
     {
@@ -78,6 +79,9 @@ const UpcomingTests = () => {
                 <button className="btn bg-green-500 text-white text-xl px-8 py-4">Contact Us</button>
             </section>
         </div>
+        <div className="mt-40">
+                <Footer></Footer>
+            </div>
         </div>
     );
 };

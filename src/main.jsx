@@ -74,32 +74,32 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>, 
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>, 
     children: [
       
       {
         path: "addBanner",
-        element: <AddBanner></AddBanner>
+        element: <PrivateRoute><AddBanner></AddBanner></PrivateRoute>
       },
       {
         path: "addTest",
-        element: <AddTest></AddTest>
+        element: <PrivateRoute><AddTest></AddTest></PrivateRoute>
       },
       {
         path: "allTests",
-        element: <AllTests></AllTests>
+        element: <PrivateRoute><AllTests></AllTests></PrivateRoute>
       },
       {
         path: "serviceChart",
-        element: <MostBookedServicesChart></MostBookedServicesChart>
+        element: <PrivateRoute><MostBookedServicesChart></MostBookedServicesChart></PrivateRoute>
       },
       {
         path: "allBanners",
-        element: <AllBanners></AllBanners>
+        element: <PrivateRoute><AllBanners></AllBanners></PrivateRoute>
       },
       {
         path:"allUsers" , 
-        element : <AllUsers></AllUsers>
+        element : <PrivateRoute><AllUsers></AllUsers></PrivateRoute>
       } ,
       {
         path: "myAppointments",
@@ -115,7 +115,7 @@ const router = createBrowserRouter([
       {
         path: 'updateAdminTest/:id' ,
         element: <UpdateAdminTest></UpdateAdminTest> ,
-        loader: ({params}) => fetch(`http://localhost:5000/updateAdminTest/${params.id}`) 
+        loader: ({params}) => fetch(`https://final-assignment-12-server.vercel.app/updateAdminTest/${params.id}`) 
       }
      
       

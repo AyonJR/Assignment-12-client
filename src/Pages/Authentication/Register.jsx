@@ -5,6 +5,7 @@ import useAxiosSecure from "../../CustomHooks/useAxiosSecure";
 import useAxiosPublic from "../../CustomHooks/useAxiosPublic";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../shared/Navbar";
+import Footer from "../shared/Footer";
 
 const Register = () => {
     const [districtData, setDistrictData] = useState([]);
@@ -148,11 +149,14 @@ const Register = () => {
                         </div>
                     </div>
                     <div className="flex justify-center mt-6">
-                        <button type="submit" className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-blue-400 font-semibold rounded-md hover:bg-blue-600">Save</button>
+                        <button type="submit" className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-blue-400 font-semibold rounded-md hover:bg-blue-600">Sign Up</button>
                     </div>
                 </form>
             </section>
         </div>
+        <div className="mt-40">
+                <Footer></Footer>
+            </div>
         </div>
     );
 };

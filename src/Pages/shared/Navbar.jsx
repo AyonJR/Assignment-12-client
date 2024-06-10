@@ -31,6 +31,9 @@ const Navbar = () => {
                             <li>
                                 <NavLink to="/upcomingTests"><a className=" p-2 rounded-lg">Upcoming Tests</a></NavLink>
                             </li>
+                            <li>
+                                <NavLink to="/research"><a className=" p-2 rounded-lg">Research</a></NavLink>
+                            </li>
                             <li><NavLink to="/dashboard"><a className=" p-2 rounded-lg"> Dashboard</a></NavLink></li>
                            
                         </ul>
@@ -48,6 +51,9 @@ const Navbar = () => {
                             </li>
                             <li>
                                 <NavLink to="/upcomingTests"><a className=" p-2 rounded-lg">Upcoming Tests</a></NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/research"><a className=" p-2 rounded-lg">Research</a></NavLink>
                             </li>
 
                         </ul>
@@ -94,6 +100,9 @@ const Navbar = () => {
                             </li>
                             <li>
                                 <NavLink to="/upcomingTests"><a className=" p-2 rounded-lg">Upcoming Tests</a></NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/research"><a className=" p-2 rounded-lg">Research</a></NavLink>
                             </li>
                             <li><NavLink to="/dashboard"><a className=" p-2 rounded-lg"> Dashboard</a></NavLink></li>
                         </ul>

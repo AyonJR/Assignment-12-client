@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Navbar from '../Pages/shared/Navbar';
+import Footer from '../Pages/shared/Footer';
 
 const researchProjectsData = [
     {
@@ -120,6 +121,9 @@ const ResearchAndInnovations = () => {
                 </div>
             </section>
         </div>
+        <div className="mt-40">
+                <Footer></Footer>
+            </div>
         </div>
     );
 };

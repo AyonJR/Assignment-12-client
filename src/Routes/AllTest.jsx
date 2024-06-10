@@ -5,6 +5,7 @@ import SingleTestCard from "./SingleTestCard";
 import Navbar from "../Pages/shared/Navbar";
 import useAxiosSecure from "../CustomHooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Footer from "../Pages/shared/Footer";
 
 const AllTest = () => {
     const [tests, setTests] = useState([]);
@@ -90,6 +91,9 @@ const AllTest = () => {
                         </select>
                     </div>
                 </div>
+            </div>
+            <div className="mt-40">
+                <Footer></Footer>
             </div>
         </div>
     );

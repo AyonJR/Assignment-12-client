@@ -31,7 +31,7 @@ const AllTests = ({ queryClient }) => {
 
         if (confirmResult.isConfirmed) {
             try {
-                const response = await fetch(`http://localhost:5000/allTest/${id}`, {
+                const response = await fetch(`https://final-assignment-12-server.vercel.app/allTest/${id}`, {
                     method: 'DELETE',
                 });
                 const result = await response.json();
@@ -61,7 +61,7 @@ const AllTests = ({ queryClient }) => {
     // Function to update a test
     const handleUpdate = async (updatedTest) => {
         try {
-            const response = await fetch(`http://localhost:5000/allTest/${updatedTest._id}`, {
+            const response = await fetch(`https://final-assignment-12-server.vercel.app/allTest/${updatedTest._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -83,35 +83,35 @@ const AllTests = ({ queryClient }) => {
     };
 
     return (
-      <div> 
-        
-          <div className=" p-8 mt-14">
-           <table className="min-w-full bg-white overflow-x-scroll ">
-                <thead>
-                    <tr>
-                        <th className="w-1/3 px-4 py-2">Title</th>
-                        <th className="w-1/3 px-4 py-2">Description</th>
-                        <th className="w-1/6 px-4 py-2">Price</th>
-                        <th className="w-1/6 px-4 py-2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {allTest.map((test) => (
-                        <tr key={test._id}>
-                            <td className="border px-4 py-2">{test.name}</td>
-                            <td className="border px-4 py-2">{test.details}</td>
-                            <td className="border px-4 py-2">${test.price}</td>
-                            <td className="flex gap-2 m-2">
-                                <Link to={`/dashboard/updateAdminTest/${test._id}`}>
-                                <button className="btn bg-blue-400 text-white font-semibold" onClick={() => handleEdit(test)}>Update</button></Link>
-                                <button className="btn bg-red-400 text-white font-semibold" onClick={() => handleDelete(test._id)}>Delete</button>
-                            </td>
+        <div>
+            <div className="p-8 mt-14 overflow-x-auto">
+                <table className="min-w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th className="w-1/3 px-4 py-2">Title</th>
+                            <th className="w-1/3 px-4 py-2">Description</th>
+                            <th className="w-1/6 px-4 py-2">Price</th>
+                            <th className="w-1/6 px-4 py-2">Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {allTest.map((test) => (
+                            <tr key={test._id}>
+                                <td className="border px-4 py-2">{test.name}</td>
+                                <td className="border px-4 py-2">{test.details}</td>
+                                <td className="border px-4 py-2">${test.price}</td>
+                                <td className="flex gap-2 m-2">
+                                    <Link to={`/dashboard/updateAdminTest/${test._id}`}>
+                                        <button className="btn bg-blue-400 text-white font-semibold" onClick={() => handleEdit(test)}>Update</button>
+                                    </Link>
+                                    <button className="btn bg-red-400 text-white font-semibold" onClick={() => handleDelete(test._id)}>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
 
-           </div>
             {/* Render the update modal if a test is being edited */}
             {isModalOpen && <UpdateModal test={editTest} onClose={() => setIsModalOpen(false)} onUpdate={handleUpdate} />}
 
