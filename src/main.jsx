@@ -26,6 +26,9 @@ import MyProfile from './Pages/Dashboard/UserProfile/MyProfile.jsx';
 import TestResults from './Pages/Dashboard/UserProfile/TestResults.jsx';
 import UpdateAdminTest from './Pages/Dashboard/AdminProfile/UpdateAdminTest.jsx';
 import PrivateRoute from './Routes/PrivateRoute.jsx';
+import HealthPackages from './Routes/HealthPackages.jsx';
+import UpcomingTests from './Routes/UpcomingTests.jsx';
+import ResearchAndInnovations from './Routes/ResearchAndInnovations.jsx';
 
 
 const queryClient = new QueryClient()
@@ -50,6 +53,18 @@ const router = createBrowserRouter([
       {
         path: "/allTest",
         element: <AllTest></AllTest>
+      },
+      {
+        path: "/healthPackage",
+        element: <HealthPackages></HealthPackages>
+      },
+      {
+        path: "/upcomingTests",
+        element: <UpcomingTests></UpcomingTests>
+      },
+      {
+        path: "/research",
+        element: <ResearchAndInnovations></ResearchAndInnovations>
       },
       {
         path: "/test/:id",
