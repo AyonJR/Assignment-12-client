@@ -56,8 +56,8 @@ const Register = () => {
                 const result = await createUser(email, password);
                 const loggedUser = result.user;
                 form.reset()
-                navigate('/dashboard')
-                const loggedInUserInfo = { name, email };
+                navigate('/')
+                const loggedInUserInfo = { name, email , avatar };
 
 
                 const res = await axiosPublic.post('/loginUsers', loggedInUserInfo);

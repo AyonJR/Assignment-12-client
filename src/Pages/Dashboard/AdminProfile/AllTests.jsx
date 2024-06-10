@@ -31,7 +31,7 @@ const AllTests = ({ queryClient }) => {
 
         if (confirmResult.isConfirmed) {
             try {
-                const response = await fetch(`http://localhost:5000/allTest/${id}`, {
+                const response = await fetch(`https://final-assignment-12-server.vercel.app/allTest/${id}`, {
                     method: 'DELETE',
                 });
                 const result = await response.json();
@@ -61,7 +61,7 @@ const AllTests = ({ queryClient }) => {
     // Function to update a test
     const handleUpdate = async (updatedTest) => {
         try {
-            const response = await fetch(`http://localhost:5000/allTest/${updatedTest._id}`, {
+            const response = await fetch(`https://final-assignment-12-server.vercel.app/allTest/${updatedTest._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

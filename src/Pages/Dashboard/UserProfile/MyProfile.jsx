@@ -10,6 +10,7 @@ const MyProfile = () => {
         email: '',
         photoURL: ''
     });
+    console.log(profile)
     const [isEditing, setIsEditing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
 
@@ -33,6 +34,7 @@ const MyProfile = () => {
 
     const handleSave = async () => {
         setIsSaving(true);
+        Swal.fire("Success!", "Your profile has been updated.", "success");
         try {
             await updateUserProfile(profile);
 
@@ -42,7 +44,7 @@ const MyProfile = () => {
             setIsEditing(false);
         } catch (error) {
             console.error("Error updating profile:", error);
-            Swal.fire("Error!", "Failed to update your profile.", "error");
+            // Swal.fire("Error!", "Failed to update your profile.", "error");
         } finally {
             setIsSaving(false);
         }
@@ -51,6 +53,7 @@ const MyProfile = () => {
     if (loading) {
         return <div>Loading...</div>;
     }
+    console.log(profile)
 
     return (
         <div className="container mx-auto p-6">

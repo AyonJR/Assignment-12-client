@@ -104,6 +104,12 @@ const Dashboard = () => {
                                         Statistics
                                     </NavLink>
                                 </li>
+                                <li className="font-semibold">
+                                <NavLink to={"/"}>
+                                    <IoHomeSharp />
+                                    Home
+                                </NavLink>
+                            </li>
                             </>
                         ) : (
                             <>
@@ -125,6 +131,12 @@ const Dashboard = () => {
                                         Test Result
                                     </NavLink>
                                 </li>
+                                <li className="font-semibold">
+                                <NavLink to={"/"}>
+                                    <IoHomeSharp />
+                                    Home
+                                </NavLink>
+                            </li>
                             </>
                         )}
                     </ul>

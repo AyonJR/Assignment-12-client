@@ -115,7 +115,7 @@ const router = createBrowserRouter([
       {
         path: 'updateAdminTest/:id' ,
         element: <UpdateAdminTest></UpdateAdminTest> ,
-        loader: ({params}) => fetch(`http://localhost:5000/updateAdminTest/${params.id}`) 
+        loader: ({params}) => fetch(`https://final-assignment-12-server.vercel.app/updateAdminTest/${params.id}`) 
       }
      
       
