@@ -8,13 +8,13 @@ import { useQuery } from "@tanstack/react-query";
 import Footer from "../Pages/shared/Footer";
 
 const AllTest = () => {
-    const [tests, setTests] = useState([]);
-    const [searchDate, setSearchDate] = useState(new Date());
+    const [filteredTests, setFilteredTests] = useState([]);
+    const [searchDate, setSearchDate] = useState(null);
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
     const axiosSecure = useAxiosSecure();
 
-    const { data: allTest = [], isLoading, isError, error } = useQuery({
+    const { data: allTests = [], isLoading, isError, error } = useQuery({
         queryKey: ['allTests'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/allTest`);
@@ -23,10 +23,24 @@ const AllTest = () => {
     });
 
     useEffect(() => {
-        if (allTest.length > 0) {
-            setTests(allTest);
+        if (searchDate) {
+            console.log("Filtering tests by date:", searchDate);
+            const filtered = allTests.filter(test => {
+                if (!test.date) {
+                    return false; // Skip tests without a valid date
+                }
+                const testDate = new Date(test.date);
+                if (isNaN(testDate.getTime())) {
+                    return false; // Skip invalid dates
+                }
+                return testDate.toDateString() === searchDate.toDateString();
+            });
+            console.log("Filtered tests:", filtered);
+            setFilteredTests(filtered);
+        } else {
+            setFilteredTests(allTests);
         }
-    }, [allTest]);
+    }, [searchDate, allTests]);
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -36,10 +50,10 @@ const AllTest = () => {
         return <div>Error: {error.message}</div>;
     }
 
-    const totalPages = Math.ceil(tests.length / itemsPerPage);
+    const totalPages = Math.ceil(filteredTests.length / itemsPerPage);
     const startIndex = currentPage * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const currentTests = tests.slice(startIndex, endIndex);
+    const currentTests = filteredTests.slice(startIndex, endIndex);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -60,9 +74,10 @@ const AllTest = () => {
                 <div className="flex justify-center mb-6">
                     <DatePicker
                         selected={searchDate}
-                        onChange={setSearchDate}
+                        onChange={date => setSearchDate(date)}
                         className="border border-gray-300 rounded-md p-2"
                         dateFormat="yyyy-MM-dd"
+                        placeholderText="Select a date"
                     />
                 </div>
                 <div className="grid mt-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -93,7 +108,7 @@ const AllTest = () => {
                 </div>
             </div>
             <div className="mt-40">
-                <Footer></Footer>
+                <Footer />
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useContext} from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -34,7 +35,9 @@ const Navbar = () => {
                             <li>
                                 <NavLink to="/research"><a className=" p-2 rounded-lg">Research</a></NavLink>
                             </li>
-                            <li><NavLink to="/dashboard"><a className=" p-2 rounded-lg"> Dashboard</a></NavLink></li>
+                            <li><NavLink to="/dashboard"><a className=" p-2 rounded-lg">
+                                <FaShoppingCart></FaShoppingCart>
+                                 </a></NavLink></li>
                            
                         </ul>
                     </>
@@ -104,7 +107,9 @@ const Navbar = () => {
                             <li>
                                 <NavLink to="/research"><a className=" p-2 rounded-lg">Research</a></NavLink>
                             </li>
-                            <li><NavLink to="/dashboard"><a className=" p-2 rounded-lg"> Dashboard</a></NavLink></li>
+                            <li><NavLink to="/dashboard"><a className=" p-2 rounded-lg"> 
+                            <FaShoppingCart></FaShoppingCart>
+                            </a></NavLink></li>
                         </ul>
                     </>
                 ) : (
