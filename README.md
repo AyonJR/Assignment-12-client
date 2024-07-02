@@ -1,27 +1,40 @@
 
 
-# assignment_category_0004
+# Overview
+
+- Developed to facilitate collaboration and research in laboratory environments.
+- Aims to streamline workflow management and data sharing among researchers.
+- Integrates tools for experiment tracking, data analysis, and collaboration.
+- Designed to enhance efficiency and promote innovation in scientific research settings.
 
 
 
-# LabX
-- Live site link  [ https://final-assignment-12-ea1ec.web.app/ ]
-- adminEmail - bhai60diyen@gmail.com
-- adminPassword - bhai60diyen
+
+# Features  
+
+- LabX facilitates efficient workflow management in laboratory environments, optimizing processes from experiment tracking to data analysis.
+- The platform integrates collaborative tools that enable researchers to share data, collaborate on projects, and streamline communication, fostering teamwork and innovation.
+- LabX incorporates advanced data analysis capabilities, allowing researchers to analyze complex datasets effectively and derive meaningful insights, supporting informed decision-making and scientific discoveries.
 
 
-# Features and Characteristics 
+# Technologies used
+- Tailwind-css
+- axios
+- firebase
+- react
+- stripe
+- mongodb
+- expressjs
+- vercel
+- tanstack-query
+- framer-motion
 
--  Comprehensive diagnostic services: Imaging, lab tests, and specialized procedures.
-- State-of-the-art equipment for accurate results.
-- Experienced medical professionals ensure quality.
-- Convenient location, easy access, and ample parking.
-- Fast turnaround time for test results.
-- Personalized patient care and tailored plans.
-- Online appointment booking for convenience.
-- Accepted insurance plans and flexible payment options.
-- Health education resources for patient empowerment.
-- Patient testimonials showcase service quality.
+
+# Steps to clone the project
+- Clone the repository: Download the project repository from GitHub to your local machine.
+- Navigate into the project directory: Change your directory to the project's root folder.
+- Install dependencies: Install all the required dependencies and packages specified in the project.
+- Run the project: Start the application to run it on your local machine.
 
 
 
