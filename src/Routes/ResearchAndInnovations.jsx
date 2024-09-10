@@ -43,9 +43,7 @@ const ResearchAndInnovations = () => {
 
     return (
         <div>
-            <div>
-                <Navbar></Navbar>
-            </div>
+            
             <div className="container mx-auto p-8">
             <section className="mb-16" data-aos="fade-up">
                 <div className='flex justify-center'>
@@ -121,9 +119,7 @@ const ResearchAndInnovations = () => {
                 </div>
             </section>
         </div>
-        <div className="mt-40">
-                <Footer></Footer>
-            </div>
+        
         </div>
     );
 };

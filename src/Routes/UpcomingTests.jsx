@@ -40,9 +40,7 @@ const UpcomingTests = () => {
 
     return (
         <div>
-            <div>
-                <Navbar></Navbar>
-            </div>
+        
             <div className="container mx-auto p-8">
             <section className="mb-16" data-aos="fade-up">
                 <div className='flex justify-center'>
@@ -79,9 +77,7 @@ const UpcomingTests = () => {
                 <button className="btn bg-green-500 text-white text-xl px-8 py-4">Contact Us</button>
             </section>
         </div>
-        <div className="mt-40">
-                <Footer></Footer>
-            </div>
+     
         </div>
     );
 };

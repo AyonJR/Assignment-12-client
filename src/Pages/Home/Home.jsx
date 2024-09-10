@@ -5,13 +5,12 @@ import Navbar from "../shared/Navbar";
 import FeaturedTests from "./FeaturedTests";
 import Promotions from "./Promotions";
 import Recommendations from "./Recommendations";
+import Testimonials from "./Testimonials";
 
 const Home = () => {
     return (
-        <div>
-            <div>
-                <Navbar></Navbar>
-            </div>
+        <div className="custom-font">
+           
            
             <div>
                 <Banner></Banner>
@@ -25,9 +24,10 @@ const Home = () => {
             <div className="mt-16">
                 <FeaturedTests></FeaturedTests>
             </div>
-            <div className="mt-40">
-                <Footer></Footer>
+            <div className="mt-16">
+                <Testimonials></Testimonials>
             </div>
+           
           
         </div>
     );

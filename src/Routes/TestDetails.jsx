@@ -65,7 +65,6 @@ const TestDetails = () => {
             exit={{ opacity: 0 }}
             className="overflow-hidden"
         >
-            <Navbar />
             <div className="container mx-auto p-8">
                 <ToastContainer />
                 <motion.div
@@ -130,9 +129,7 @@ const TestDetails = () => {
                 )}
             </div>
             <div>
-            <div className="mt-40">
-                <Footer></Footer>
-            </div>
+           
             </div>
         </motion.div>
     );

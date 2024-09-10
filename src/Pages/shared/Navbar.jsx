@@ -1,160 +1,117 @@
-import { NavLink } from "react-router-dom";
-import { useContext} from "react";
+import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { FaShoppingCart } from "react-icons/fa";
-
+import { FaShoppingCart, FaHome, FaFlask, FaCalendarAlt, FaUserCircle, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 
 const Navbar = () => {
-    const { user, logoutUser } = useContext(AuthContext) 
-
-   
-
+    const { user, logoutUser } = useContext(AuthContext);
 
     return (
-        <div className="navbar ">
+        <div className="navbar bg-white shadow-lg px-6 py-4  w-full z-50">
             <div className="navbar-start">
+                {/* Mobile Menu Button */}
                 <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                    </div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-
-                    {user ? (
-                    <>
-                        <ul className="menu menu-horizontal mr-2 px-1">
-                            <li><NavLink to="/"><a className=" p-2   rounded-lg">Home</a></NavLink></li>
-                            <li>
-                                <NavLink to="/allTest"><a className=" p-2 rounded-lg">All Tests</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/healthPackage"><a className=" p-2 rounded-lg">Health Package</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/upcomingTests"><a className=" p-2 rounded-lg">Upcoming Tests</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/research"><a className=" p-2 rounded-lg">Research</a></NavLink>
-                            </li>
-                            <li><NavLink to="/dashboard"><a className=" p-2 rounded-lg">
-                                <FaShoppingCart></FaShoppingCart>
-                                 </a></NavLink></li>
-                           
-                        </ul>
-                    </>
-                ) : (
-                    <>
-
-                        <ul className="menu menu-horizontal mr-2 px-1">
-                            <li><NavLink to="/"><a className=" p-2   rounded-lg">Home</a></NavLink></li>
-                            <li>
-                                <NavLink to="/allTest"><a className=" p-2 rounded-lg">All Tests</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/healthPackage"><a className=" p-2 rounded-lg">Health Package</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/upcomingTests"><a className=" p-2 rounded-lg">Upcoming Tests</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/research"><a className=" p-2 rounded-lg">Research</a></NavLink>
-                            </li>
-
-                        </ul>
-
-                    </>
-                )}
-                
-
-                         
-                         
-                            <li>
-                                {user ? (
-                                    <>
-                                        {/* User photo and logout button */}
-                                        <div className="relative">
-                                            <img src={user.photoURL} alt={user.displayName} className="w-10 h-10 mr-4 rounded-full cursor-pointer" />
-                                            <span className="absolute top-full left-1/2 transform -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300">{user.displayName}</span>
-                                        </div>
-                                        <button onClick={logoutUser} className="btn">Logout</button>
-                                    </>
-                                ) : (
-                                    <>
-                                        <NavLink to="/login"><a className="btn font-bold mr-2 ">Login</a></NavLink>
-                                        <NavLink to="/register"><a className="btn font-bold ">Register</a></NavLink>
-                                    </>
-                                )}
-                            </li>
-
-                        </ul>
+                    <button
+                        tabIndex={0}
+                        className="btn btn-ghost lg:hidden hover:bg-blue-100 transition"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </button>
+                    <ul
+                        tabIndex={0}
+                        className="menu menu-sm dropdown-content mt-3 p-4 shadow-lg bg-white rounded-box w-52 space-y-2"
+                    >
+                        {user ? (
+                            <>
+                                <li><Link to="/" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaHome /><span>Home</span></Link></li>
+                                <li><NavLink to="/allTest" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>All Tests</span></NavLink></li>
+                                <li><NavLink to="/healthPackage" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Health Packages</span></NavLink></li>
+                                <li><NavLink to="/upcomingTests" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Upcoming Tests</span></NavLink></li>
+                                <li><NavLink to="/research" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>Research</span></NavLink></li>
+                                <li><NavLink to="/dashboard" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaShoppingCart /><span>Dashboard</span></NavLink></li>
+                            </>
+                        ) : (
+                            <>
+                                <li><NavLink to="/" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaHome /><span>Home</span></NavLink></li>
+                                <li><NavLink to="/allTest" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>All Tests</span></NavLink></li>
+                                <li><NavLink to="/healthPackage" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Health Packages</span></NavLink></li>
+                                <li><NavLink to="/upcomingTests" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Upcoming Tests</span></NavLink></li>
+                                <li><NavLink to="/research" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>Research</span></NavLink></li>
+                            </>
+                        )}
+                        <li className="mt-4">
+                            {user ? (
+                                <div className="flex items-center space-x-4">
+                                    <img src={user.photoURL} alt={user.displayName} className="w-10 h-10 rounded-full border border-blue-500" />
+                                    <span className="text-blue-500 font-semibold">{user.displayName}</span>
+                                    <button onClick={logoutUser} className="btn bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition flex items-center space-x-2">
+                                        <FaSignOutAlt /><span>Logout</span>
+                                    </button>
+                                </div>
+                            ) : (
+                                <>
+                                    <NavLink to="/login" className="btn bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition flex items-center space-x-2">
+                                        <FaSignInAlt /><span>Login</span>
+                                    </NavLink>
+                                    <NavLink to="/register" className="btn bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition flex items-center space-x-2">
+                                        <FaUserCircle /><span>Register</span>
+                                    </NavLink>
+                                </>
+                            )}
+                        </li>
+                    </ul>
                 </div>
-                <h2 className="self-center text-3xl font-bold text-transparent bg-gradient-to-r from-blue-800 to-blue-300 bg-clip-text">LabX</h2>
+
+                {/* Logo */}
+                <NavLink to="/" className="flex items-center">
+                    <img className="w-32" src="https://i.ibb.co.com/VqQc6xN/Blue-white-and-green-Medical-care-logo-1-removebg-preview.png" alt="LabX Logo" />
+                </NavLink>
             </div>
+
+            {/* Links for Larger Screens */}
             <div className="navbar-center hidden lg:flex">
-
-                {user ? (
-                    <>
-                        <ul className="menu menu-horizontal mr-2 px-1">
-                        <li><NavLink to="/"><a className=" p-2   rounded-lg">Home</a></NavLink></li>
-                            <li>
-                                <NavLink to="/allTest"><a className=" p-2 rounded-lg">All Tests</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/healthPackage"><a className=" p-2 rounded-lg">Health Package</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/upcomingTests"><a className=" p-2 rounded-lg">Upcoming Tests</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/research"><a className=" p-2 rounded-lg">Research</a></NavLink>
-                            </li>
-                            <li><NavLink to="/dashboard"><a className=" p-2 rounded-lg"> 
-                            <FaShoppingCart></FaShoppingCart>
-                            </a></NavLink></li>
-                        </ul>
-                    </>
-                ) : (
-                    <>
-
-                        <ul className="menu menu-horizontal mr-2 px-1">
-                        <li><NavLink to="/"><a className=" p-2   rounded-lg">Home</a></NavLink></li>
-                            <li>
-                                <NavLink to="/allTest"><a className=" p-2 rounded-lg">All Tests</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/healthPackage"><a className=" p-2 rounded-lg">Health Package</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/upcomingTests"><a className=" p-2 rounded-lg">Upcoming Tests</a></NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/research"><a className=" p-2 rounded-lg">Research</a></NavLink>
-                            </li>
-
-
-                        </ul>
-
-                    </>
-                )}
+                <ul className="menu menu-horizontal custom-font text-cyanCustom space-x-4">
+                    {user ? (
+                        <>
+                            <li><NavLink to="/" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaHome /><span>Home</span></NavLink></li>
+                            <li><NavLink to="/allTest" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaFlask /><span>All Tests</span></NavLink></li>
+                            <li><NavLink to="/healthPackage" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaCalendarAlt /><span>Health Packages</span></NavLink></li>
+                            <li><NavLink to="/upcomingTests" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaCalendarAlt /><span>Upcoming Tests</span></NavLink></li>
+                            <li><NavLink to="/research" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaFlask /><span>Research</span></NavLink></li>
+                            <li><NavLink to="/dashboard" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaShoppingCart /><span>Dashboard</span></NavLink></li>
+                        </>
+                    ) : (
+                        <>
+                            <li><Link to="/" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaHome /><span>Home</span></Link></li>
+                            <li><Link to="/allTest" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaFlask /><span>All Tests</span></Link></li>
+                            <li><Link to="/healthPackage" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaCalendarAlt /><span>Health Packages</span></Link></li>
+                            <li><Link to="/upcomingTests" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaCalendarAlt /><span>Upcoming Tests</span></Link></li>
+                            <li><Link to="/research" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaFlask /><span>Research</span></Link></li>
+                        </>
+                    )}
+                </ul>
             </div>
-            <div className="navbar-end">
-                
+
+            {/* User Info */}
+            <div className="navbar-end hidden lg:flex items-center space-x-4">
                 {user ? (
                     <>
-                        {/* User photo and logout button */}
-                        <div className="relative ">
-                            <img src={user.photoURL} alt={user.displayName} className="w-10 h-10 mr-4 rounded-full cursor-pointer" />
-                            <span className="absolute top-full left-1/2 transform -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300">{user.displayName}</span>
-                        </div>
-                        <button onClick={logoutUser} className="btn  hidden sm:inline-block">Logout</button>
+                        <img src={user.photoURL} alt={user.displayName} className="w-10 h-10 rounded-full border border-blue-500 cursor-pointer" />
+                        <span className="text-blue-500 font-semibold">{user.displayName}</span>
+                        <button onClick={logoutUser} className="btn bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition flex items-center space-x-2">
+                            <FaSignOutAlt /><span>Logout</span>
+                        </button>
                     </>
                 ) : (
-                    <div className="hidden sm:inline-block"> {/* Wrap the login and register buttons in a div with a conditional class */}
-                        <NavLink to="/login"><a className="btn bg-gray-700  font-bold mr-2 text-white hover:bg-gray-800 hover:border-gray-800">Login</a></NavLink>
-                        <NavLink to="/register"><a className="btn bg-gray-700  font-bold mr-2 text-white hover:bg-gray-800 hover:border-gray-800">Register</a></NavLink>
-                    </div>
+                    <>
+                        <Link to="/login" className="btn bg-cyanCustom text-white px-4 py-2 rounded-md hover:bg-blue-600 transition flex items-center space-x-2">
+                            <FaSignInAlt /><span>Login</span>
+                        </Link>
+                        
+                    </>
                 )}
-
-
             </div>
         </div>
     );

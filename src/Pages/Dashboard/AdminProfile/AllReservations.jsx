@@ -31,7 +31,7 @@ const AllReservations = () => {
     });
 
     const resultMutation = useMutation({
-        mutationFn: ({ id, link }) => axiosSecure.put(`/submitResult/${id}`, { resultLink: link }),
+        mutationFn: ({ id, link }) => axiosSecure.put(`/submit-pdf/${id}`, { resultLink: link }),
         onSuccess: () => {
             queryClient.invalidateQueries(['allBookings']);
             setCurrentBooking(null);

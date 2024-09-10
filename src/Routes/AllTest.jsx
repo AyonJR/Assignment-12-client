@@ -66,7 +66,6 @@ const AllTest = () => {
 
     return (
         <div>
-            <Navbar />
             <div className="container mx-auto p-6">
                 <h2 className="text-4xl font-semibold text-blue-600 text-center mb-8 animate__animated animate__fadeInDown">
                     All Tests
@@ -107,9 +106,7 @@ const AllTest = () => {
                     </div>
                 </div>
             </div>
-            <div className="mt-40">
-                <Footer />
-            </div>
+           
         </div>
     );
 };
