@@ -4,6 +4,7 @@ import 'aos/dist/aos.css';  // Import AOS styles
 import { FaHeartbeat, FaHandHoldingMedical, FaUserMd } from 'react-icons/fa';  // Import icons
 import Navbar from '../Pages/shared/Navbar';
 import Footer from '../Pages/shared/Footer';
+import { Link } from 'react-router-dom';
 
 const HealthPackages = () => {
     useEffect(() => {
@@ -119,9 +120,11 @@ const HealthPackages = () => {
                 {/* Call-to-Action Section */}
                 <section className="text-center mb-16" data-aos="fade-up">
                     <h3 className="text-3xl font-semibold mb-6">Ready to Take Charge of Your Health?</h3>
-                    <button className="bg-green-500 hover:bg-green-600 text-white text-xl px-8 py-4 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-110">
+                    <Link to={'/allTest'}>
+                    <button className="bg-cyanCustom text-white text-xl px-8 py-4 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-110">
                         Book Now <FaHandHoldingMedical className="inline-block ml-2" />
                     </button>
+                    </Link>
                 </section>
             </div>
         </div>
