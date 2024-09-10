@@ -39,19 +39,22 @@ const HealthPackages = () => {
 
     return (
         <div className="">
-            <Navbar />
             <div className="container mx-auto p-8">
                 {/* Header Section */}
                 <section className="mb-16 text-center" data-aos="fade-up">
-                    <h2 className="text-5xl font-bold text-blue-600 mb-6">Our Health Packages</h2>
-                    <p className="text-gray-700 text-lg mx-auto max-w-3xl">
-                        Discover the best health packages designed to cater to your well-being. From basic to premium check-ups, we provide the right care for you.
-                    </p>
+                <div className="flex gap-5 items-center mb-6 mx-10">
+     <h2 className="text-4xl font-semibold w-1/3  text-black  text-center mb-2">
+        Our <span className="text-cyanCustom">Packages</span>
+      </h2>
+      <h2 className="w-2/3 font-semibold border-l-4 border-cyanCustom pl-4">
+      Maintaining a healthy lifestyle includes regular check-ups for early detection of health issues, a balanced diet to support overall wellness, proper sleep for mental and physical recovery, staying hydrated for optimal body function, and regular exercise to boost both physical and mental health.
+      </h2>
+     </div>
                 </section>
 
                 {/* Health Packages */}
                 <section className="mb-16">
-                    <h3 className="text-3xl font-semibold mb-6 text-center" data-aos="fade-up">Choose Your Package</h3>
+                    
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                         {packages.map(pkg => (
                             <div
@@ -69,8 +72,8 @@ const HealthPackages = () => {
                                         {pkg.name} <FaHeartbeat className="text-red-500" />
                                     </h4>
                                     <p className="text-gray-600 mt-2">{pkg.details}</p>
-                                    <p className="text-blue-600 font-bold text-lg mt-4">{pkg.price}</p>
-                                    <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full shadow-lg transition-all duration-300">
+                                    <p className="text-cyanCustom font-bold text-lg mt-4">{pkg.price}</p>
+                                    <button className="mt-4 bg-cyanCustom  text-white py-2 px-4 rounded-full font-semibold shadow-lg transition-all duration-300">
                                         Learn More
                                     </button>
                                 </div>
