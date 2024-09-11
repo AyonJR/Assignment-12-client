@@ -67,9 +67,13 @@ const AllTest = () => {
     return (
         <div>
             <div className="container mx-auto p-6">
-                <h2 className="text-4xl font-semibold text-blue-600 text-center mb-8 animate__animated animate__fadeInDown">
-                    All Tests
-                </h2>
+            <div className="flex gap-5 justify-center items-center mb-6 mx-10">
+            <h2 className="text-4xl font-semibold w-1/3  text-black  text-center mb-2">
+              All <span className="text-cyanCustom">Tests</span>
+            </h2>
+            <h2 className="w-2/3 font-semibold border-l-4 border-cyanCustom pl-4">
+            Discover a wide range of medical tests tailored to meet your healthcare needs.  Whether you’re looking to monitor chronic conditions or seeking early detection, our reliable tests are designed to provide accurate insights for your well-being. Browse through our selection and take a step towards better health today!            </h2>
+          </div>
                 <div className="flex justify-center mb-6">
                     <DatePicker
                         selected={searchDate}
@@ -91,7 +95,7 @@ const AllTest = () => {
                             <button
                                 key={index}
                                 onClick={() => handlePageChange(index)}
-                                className={`btn ${index === currentPage ? 'btn-primary' : 'btn-outline'}`}
+                                className={`btn ${index === currentPage ? 'btn-primary bg-cyanCustom' : 'btn-outline'}`}
                             >
                                 {index + 1}
                             </button>

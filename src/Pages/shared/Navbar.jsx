@@ -99,14 +99,14 @@ const Navbar = () => {
                 {user ? (
                     <>
                         <img src={user.photoURL} alt={user.displayName} className="w-10 h-10 rounded-full border border-blue-500 cursor-pointer" />
-                        <span className="text-blue-500 font-semibold">{user.displayName}</span>
-                        <button onClick={logoutUser} className="btn bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition flex items-center space-x-2">
+                        
+                        <button onClick={logoutUser} className="btn bg-white text-cyanCustom border-2 border-cyanCustom px-4 py-2 rounded-md  transition flex items-center space-x-2">
                             <FaSignOutAlt /><span>Logout</span>
                         </button>
                     </>
                 ) : (
                     <>
-                        <Link to="/login" className="btn bg-cyanCustom text-white px-4 py-2 rounded-md hover:bg-blue-600 transition flex items-center space-x-2">
+                        <Link to="/login" className="btn bg-cyanCustom text-white px-4 py-2 rounded-md transition-all duration-300 transform hover:scale-110 hover:bg-cyanCustom flex items-center space-x-2">
                             <FaSignInAlt /><span>Login</span>
                         </Link>
                         

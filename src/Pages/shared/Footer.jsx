@@ -25,13 +25,13 @@ const Footer = () => {
                         <p className="font-semibold   text-gray-800 dark:text-white">Quick Links</p>
 						<hr  className='border-cyanCustom border-[1px] w-[82px] mt-1'/>
                         <div className="flex flex-col mt-5 space-y-2">
-                            <a href="#" className="text-gray-600 hover:text-blue-500 dark:text-gray-300 hover:underline">
+                            <a href="#" className="text-gray-600 hover:text-cyanCustom dark:text-gray-300 hover:underline">
                                 Home
                             </a>
-                            <a href="#" className="text-gray-600 hover:text-blue-500 dark:text-gray-300 hover:underline">
+                            <a href="#" className="text-gray-600 hover:text-cyanCustom dark:text-gray-300 hover:underline">
                                 About Us
                             </a>
-                            <a href="#" className="text-gray-600 hover:text-blue-500 dark:text-gray-300 hover:underline">
+                            <a href="#" className="text-gray-600 hover:text-cyanCustom dark:text-gray-300 hover:underline">
                                 Services
                             </a>
                         </div>
@@ -40,13 +40,13 @@ const Footer = () => {
                         <p className="font-semibold text-gray-800 dark:text-white">Industries</p>
 						<hr  className='border-cyanCustom border-[1px] w-[72px] mt-1'/>
                         <div className="flex flex-col mt-5 space-y-2">
-                            <a href="#" className="text-gray-600 hover:text-blue-500 dark:text-gray-300 hover:underline">
+                            <a href="#" className="text-gray-600 hover:text-cyanCustom dark:text-gray-300 hover:underline">
                                 Retail & E-Commerce
                             </a>
-                            <a href="#" className="text-gray-600 hover:text-blue-500 dark:text-gray-300 hover:underline">
+                            <a href="#" className="text-gray-600 hover:text-cyanCustom dark:text-gray-300 hover:underline">
                                 Tech & IT Solutions
                             </a>
-                            <a href="#" className="text-gray-600 hover:text-blue-500 dark:text-gray-300 hover:underline">
+                            <a href="#" className="text-gray-600 hover:text-cyanCustom dark:text-gray-300 hover:underline">
                                 Finance & Banking
                             </a>
                         </div>

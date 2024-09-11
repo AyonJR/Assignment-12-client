@@ -8,31 +8,31 @@ const SingleTestCard = ({ test }) => {
     return (
         <motion.div
             key={_id}
-            className="border rounded-md overflow-hidden bg-white shadow-lg"
-            whileHover={{ scale: 1.05, y: -5, boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.2)" }}
+            className="relative border rounded-lg overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+            whileHover={{ scale: 1.05, y: -5, boxShadow: "0px 15px 25px rgba(0, 0, 0, 0.2)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
         >
             <div className="relative">
-                <img src={image} alt={name} className="w-full h-40 object-cover rounded-t-md" />
-                <div className="absolute top-0 left-0 bg-blue-500 text-white px-2 py-1 rounded-br-md">
+                <img src={image} alt={name} className="w-full h-48 object-cover rounded-t-lg" />
+                <div className="absolute top-4 left-4 bg-cyanCustom text-white px-3 py-1 rounded-full text-sm font-semibold">
                     New
                 </div>
             </div>
-            <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">{name}</h3>
+            <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-800 mb-3">{name}</h3>
                 <p className="text-gray-600 mb-4">{details}</p>
-                <div className="flex justify-between items-center">
-                    <p className="text-gray-800 font-semibold">${price}</p>
-                    <p className="text-gray-800">Slots: {slots}</p>
+                <div className="flex justify-between items-center text-gray-800 mb-4">
+                    <p className="text-xl font-semibold">${price}</p>
+                    <p className="bg-cyanCustom text-white px-2 py-1 rounded-full text-sm">Slots: {slots}</p>
                 </div>
-                <div className="flex justify-center mt-4">
+                <div className="flex justify-center">
                     <Link
                         to={`/test/${_id}`}
-                        className="btn bg-blue-500 text-white font-semibold flex items-center px-4 py-2"
+                        className="btn bg-cyanCustom text-white font-semibold flex items-center px-4 py-2 rounded-lg shadow-md hover:bg-cyan-600 transition-colors duration-300"
                     >
-                        <FaInfoCircle className="mr-2" />
+                        <FaInfoCircle className="mr-2 text-xl" />
                         View Details
                     </Link>
                 </div>

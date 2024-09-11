@@ -55,7 +55,7 @@ const TestDetails = () => {
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
-        return date.toISOString().slice(0, 10); // "YYYY-MM-DD"
+        return date.toLocaleDateString(); // "MM/DD/YYYY"
     };
 
     return (
@@ -63,44 +63,51 @@ const TestDetails = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="overflow-hidden"
+            className=" min-h-screen"
         >
-            <div className="container mx-auto p-8">
+            <div className="container custom-font  mx-auto p-8 md:p-12 lg:p-16">
                 <ToastContainer />
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="max-w-4xl mx-auto bg-white border rounded-lg shadow-lg overflow-hidden"
+                    className="bg-white rounded-lg shadow-lg overflow-hidden"
                 >
-                    <img src={singleTest.image} alt={singleTest.title} className="w-full h-60 object-cover rounded-t-lg" />
-                    <div className="p-6">
-                        <h3 className="text-2xl font-bold text-gray-800 mb-2">{singleTest.name}</h3>
-                        <p className="text-gray-700 mb-4">{singleTest.details}</p>
-                        <div className="flex items-center mb-4">
-                            <FaCalendarAlt className="text-gray-600 mr-2" />
-                            <span className="text-gray-600">
-                                {formatDate(singleTest.startDate)} ----- {formatDate(singleTest.endDate)}
-                            </span>
-                        </div>
-                        <div className="flex items-center mb-4">
-                            <FaClock className="text-gray-600 mr-2" />
-                            <span className="text-gray-600">
-                                {singleTest.slots} Slots
-                            </span>
-                        </div>
-                        <div className="flex items-center mb-4">
-                            <FaDollarSign className="text-gray-600 mr-2" />
-                            <span className="text-gray-600">
-                                ${singleTest.price}
-                            </span>
+                    <div className="relative">
+                        <img src={singleTest.image} alt={singleTest.name} className="w-full h-72 object-cover" />
+                        <div className="absolute top-4 left-4 bg-cyanCustom text-white px-4 py-2 rounded-lg shadow-lg">
+                            New
                         </div>
                     </div>
-                    <div className='flex justify-center'>
-                        <button onClick={openModal} className="btn bg-blue-400 text-white mb-5">
-                            <FaRegHandPaper className="mr-2" />
-                            Reserve
-                        </button>
+                    <div className="p-8">
+                        <h1 className="text-4xl font-bold text-gray-800 mb-4">{singleTest.name}</h1>
+                        <p className="text-lg text-gray-600 mb-6">{singleTest.details}</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                            <div className="flex items-center text-gray-700">
+                                <FaCalendarAlt className="text-2xl mr-3 text-cyanCustom" />
+                                <span className="text-lg">
+                                    {formatDate(singleTest.startDate)} - {formatDate(singleTest.endDate)}
+                                </span>
+                            </div>
+                            <div className="flex items-center text-gray-700">
+                                <FaClock className="text-2xl mr-3 text-cyanCustom" />
+                                <span className="text-lg">
+                                    {singleTest.slots} Slots Available
+                                </span>
+                            </div>
+                            <div className="flex items-center text-gray-700">
+                                <FaDollarSign className="text-2xl mr-3 text-cyanCustom" />
+                                <span className="text-lg font-semibold">
+                                    ${singleTest.price}
+                                </span>
+                            </div>
+                        </div>
+                        <div className="flex justify-center">
+                            <button onClick={openModal} className="btn bg-cyanCustom text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-cyan-600 transition-colors duration-300">
+                                <FaRegHandPaper className="mr-2 text-xl" />
+                                Reserve Now
+                            </button>
+                        </div>
                     </div>
                 </motion.div>
 
@@ -115,21 +122,18 @@ const TestDetails = () => {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="bg-white lg:w-[600px] p-6 rounded-lg shadow-lg"
+                            className="bg-white w-full max-w-lg p-8 rounded-lg shadow-lg relative"
                         >
-                            <div className='mb-5'>
-                                <Elements stripe={stripePromise}>
-                                    <CheckoutForm testInfo={singleTest} />
-                                </Elements>
-                            </div>
-                            <h2 className="text-2xl font-bold mb-4">{singleTest.name}</h2>
-                            <button onClick={closeModal} className="btn bg-blue-400 text-white">Close</button>
+                            <h2 className="text-2xl font-bold mb-6">{singleTest.name}</h2>
+                            <Elements stripe={stripePromise}>
+                                <CheckoutForm testInfo={singleTest} />
+                            </Elements>
+                            <button onClick={closeModal} className="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
+                                &times;
+                            </button>
                         </motion.div>
                     </motion.div>
                 )}
-            </div>
-            <div>
-           
             </div>
         </motion.div>
     );

@@ -27,7 +27,7 @@ const Promotions = () => {
   ];
 
   return (
-    <section className=" p-6 mx-auto bg-white rounded-md  mt-10">
+    <section className=" p-6 mx-auto  rounded-md  mt-10">
       <div className="flex gap-5 items-center mb-6 mx-10">
         <h2 className="w-2/3 font-semibold border-r-4 border-cyanCustom pr-4">
           This summer, get a discounted health check-up and ensure your
