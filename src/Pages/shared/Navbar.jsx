@@ -5,6 +5,9 @@ import { FaShoppingCart, FaHome, FaFlask, FaCalendarAlt, FaUserCircle, FaSignInA
 
 const Navbar = () => {
     const { user, logoutUser } = useContext(AuthContext);
+  
+    // TODO importing useAdmin for the Dashboard differenciation
+
 
     return (
         <div className="navbar bg-white shadow-lg px-6 py-4  w-full z-50">

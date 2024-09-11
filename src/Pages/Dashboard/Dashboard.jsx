@@ -53,6 +53,8 @@ const Dashboard = () => {
 
     return (
         <div> 
+            
+            
             {/* Drawer */}
             <div className="drawer ml-10 mt-10 lg:hidden">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" onChange={() => setIsDrawerOpen(!isDrawerOpen)} />
@@ -147,8 +149,11 @@ const Dashboard = () => {
                </div>
             <div className="flex">
                 {!isDrawerOpen && (
-                    <div className="w-64 min-h-screen bg-blue-400 hidden lg:block">
-                        <ul className="menu p-4">
+                    <div className="w-64 custom-font min-h-screen bg-white hidden lg:block">
+                        <div className="flex justify-center mt-5">
+                            <img className="w-32" src="https://i.ibb.co.com/VqQc6xN/Blue-white-and-green-Medical-care-logo-1-removebg-preview.png" alt="" />
+                        </div>
+                        <ul className="menu mt-5 text-cyanCustom p-4">
                             {isAdmin ? (
                                 <>
                                     <li className="font-semibold">
@@ -222,6 +227,7 @@ const Dashboard = () => {
                 )}
 
                 <div className="flex-1">
+                   
                     <Outlet></Outlet>
                 </div>
                 <ToastContainer></ToastContainer>

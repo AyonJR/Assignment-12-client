@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import app from "../../firebase/firebase.config";
 import useAxiosPublic from "../../CustomHooks/useAxiosPublic";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -16,6 +17,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const axiosPublic = useAxiosPublic()
+    
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -62,6 +64,7 @@ const AuthProvider = ({ children }) => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             setUser(result.user);
+
         } catch (error) {
             throw error;
         } finally {

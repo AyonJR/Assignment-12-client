@@ -4,6 +4,7 @@ import { axiosSecure } from "../../../CustomHooks/useAxiosSecure";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
+import { FaCalendarAlt, FaClock, FaTimesCircle } from "react-icons/fa";
 
 const MyAppointments = () => {
     const { user } = useContext(AuthContext);
@@ -47,58 +48,64 @@ const MyAppointments = () => {
     };
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="loader animate-spin rounded-full border-t-4 border-cyanCustom h-12 w-12"></div>
+            </div>
+        );
     }
 
     if (isError) {
-        return <div>Error: {error.message}</div>;
+        return <div className="text-red-500 text-center">Error: {error.message}</div>;
     }
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="container custom-font mx-auto py-12 px-4 lg:px-12 bg-gradient-to-b from-white to-cyanCustom/20 rounded-lg shadow-md">
             <motion.h2 
-                className="text-3xl font-bold mb-6 text-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
+                className="text-4xl font-semibold text-black mb-8 text-center tracking-widest"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
             >
-                Upcoming Appointments
+                My <span className="text-cyanCustom">Appointments</span>
             </motion.h2>
             {userBookings.length === 0 ? (
                 <motion.p 
-                    className="text-center"
+                    className="text-lg text-gray-600 text-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
                 >
-                    You have no upcoming appointments.
+                    No upcoming appointments found.
                 </motion.p>
             ) : (
-                <ul className="space-y-4">
+                <ul className="space-y-6">
                     {userBookings.map(appointment => (
                         <motion.li 
                             key={appointment._id} 
-                            className="p-4 border rounded-lg shadow-md bg-white"
+                            className="bg-white p-6 rounded-xl shadow-md border-l-4 border-cyanCustom hover:shadow-lg transition-shadow duration-300"
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.3 }}
+                            transition={{ duration: 0.4 }}
                         >
                             <div className="flex justify-between items-center">
                                 <div>
-                                    
-                                    <div className="text-lg font-semibold">{appointment.name}</div>
-                                    <div className="text-gray-600">
+                                    <h3 className="text-2xl font-semibold text-cyanCustom mb-2">{appointment.name}</h3>
+                                    <p className="text-gray-600 flex items-center gap-2">
+                                        <FaCalendarAlt className="text-cyanCustom" />
                                         <span className="font-semibold">Date:</span> {new Date(appointment.startDate).toLocaleDateString()}
-                                    </div>
-                                    <div className="text-gray-600">
+                                    </p>
+                                    <p className="text-gray-600 flex items-center gap-2">
+                                        <FaClock className="text-cyanCustom" />
                                         <span className="font-semibold">Time:</span> {new Date(appointment.startDate).toLocaleTimeString()}
-                                    </div>
+                                    </p>
                                 </div>
                                 <button
-                                    className="px-4 py-2 bg-red-400 text-white rounded-lg transition-colors duration-300 hover:bg-red-600"
+                                    className="flex items-center gap-2 px-6 py-2 bg-white text-cyanCustom font-semibold rounded-lg  hover:scale-105 transform transition-transform duration-300"
                                     onClick={() => handleCancel(appointment._id)}
                                     disabled={isCanceling}
                                 >
+                                    <FaTimesCircle />
                                     {isCanceling ? "Canceling..." : "Cancel"}
                                 </button>
                             </div>
