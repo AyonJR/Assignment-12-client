@@ -2,9 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaShoppingCart, FaHome, FaFlask, FaCalendarAlt, FaUserCircle, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import useAdmin from "../../CustomHooks/useAdmin";
 
 const Navbar = () => {
     const { user, logoutUser } = useContext(AuthContext);
+    const [isAdmin] = useAdmin()
   
     // TODO importing useAdmin for the Dashboard differenciation
 
@@ -33,7 +35,7 @@ const Navbar = () => {
                                 <li><NavLink to="/healthPackage" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Health Packages</span></NavLink></li>
                                 <li><NavLink to="/upcomingTests" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Upcoming Tests</span></NavLink></li>
                                 <li><NavLink to="/research" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>Research</span></NavLink></li>
-                                <li><NavLink to="/dashboard" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaShoppingCart /><span>Dashboard</span></NavLink></li>
+                                <li><NavLink to="/dashboard/myProfile" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaShoppingCart /><span>Dashboard</span></NavLink></li>
                             </>
                         ) : (
                             <>
@@ -81,7 +83,8 @@ const Navbar = () => {
                             <li><NavLink to="/healthPackage" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaCalendarAlt /><span>Health Packages</span></NavLink></li>
                             <li><NavLink to="/upcomingTests" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaCalendarAlt /><span>Upcoming Tests</span></NavLink></li>
                             <li><NavLink to="/research" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaFlask /><span>Research</span></NavLink></li>
-                            <li><NavLink to="/dashboard" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaShoppingCart /><span>Dashboard</span></NavLink></li>
+                            <li><NavLink to="/dashboard/myProfile" className="flex items-center space-x-2 p-2 rounded-lg hover:bg-blue-100 transition"><FaShoppingCart /><span>Dashboard</span></NavLink></li>
+                           
                         </>
                     ) : (
                         <>
