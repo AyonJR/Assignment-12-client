@@ -13,12 +13,12 @@ const Navbar = () => {
         <div className="navbar bg-white shadow-lg px-6 py-4  w-full z-50">
             <div className="navbar-start">
                 {/* Mobile Menu Button */}
-                <div className="dropdown">
+                <div className="dropdown z-50">
                     <button
                         tabIndex={0}
-                        className="btn btn-ghost lg:hidden hover:bg-blue-100 transition"
+                        className="btn btn-ghost lg:hidden hover:bg-cyan-100 transition"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-cyanCustom" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
                         </svg>
                     </button>
@@ -28,39 +28,37 @@ const Navbar = () => {
                     >
                         {user ? (
                             <>
-                                <li><Link to="/" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaHome /><span>Home</span></Link></li>
-                                <li><NavLink to="/allTest" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>All Tests</span></NavLink></li>
-                                <li><NavLink to="/healthPackage" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Health Packages</span></NavLink></li>
-                                <li><NavLink to="/upcomingTests" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Upcoming Tests</span></NavLink></li>
-                                <li><NavLink to="/research" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>Research</span></NavLink></li>
-                                <li><NavLink to="/dashboard" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaShoppingCart /><span>Dashboard</span></NavLink></li>
+                                <li><Link to="/" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaHome /><span>Home</span></Link></li>
+                                <li><NavLink to="/allTest" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>All Tests</span></NavLink></li>
+                                <li><NavLink to="/healthPackage" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Health Packages</span></NavLink></li>
+                                <li><NavLink to="/upcomingTests" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Upcoming Tests</span></NavLink></li>
+                                <li><NavLink to="/research" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>Research</span></NavLink></li>
+                                <li><NavLink to="/dashboard" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaShoppingCart /><span>Dashboard</span></NavLink></li>
                             </>
                         ) : (
                             <>
-                                <li><NavLink to="/" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaHome /><span>Home</span></NavLink></li>
-                                <li><NavLink to="/allTest" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>All Tests</span></NavLink></li>
-                                <li><NavLink to="/healthPackage" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Health Packages</span></NavLink></li>
-                                <li><NavLink to="/upcomingTests" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Upcoming Tests</span></NavLink></li>
-                                <li><NavLink to="/research" className="flex items-center space-x-2 text-blue-500 p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>Research</span></NavLink></li>
+                                <li><NavLink to="/" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaHome /><span>Home</span></NavLink></li>
+                                <li><NavLink to="/allTest" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>All Tests</span></NavLink></li>
+                                <li><NavLink to="/healthPackage" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Health Packages</span></NavLink></li>
+                                <li><NavLink to="/upcomingTests" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaCalendarAlt /><span>Upcoming Tests</span></NavLink></li>
+                                <li><NavLink to="/research" className="flex items-center space-x-2 text-cyanCustom p-2 rounded-md hover:bg-blue-100 transition"><FaFlask /><span>Research</span></NavLink></li>
                             </>
                         )}
                         <li className="mt-4">
                             {user ? (
                                 <div className="flex items-center space-x-4">
-                                    <img src={user.photoURL} alt={user.displayName} className="w-10 h-10 rounded-full border border-blue-500" />
-                                    <span className="text-blue-500 font-semibold">{user.displayName}</span>
-                                    <button onClick={logoutUser} className="btn bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition flex items-center space-x-2">
+                                    {/* <img src={user.photoURL} alt={user.displayName} className="w-10 h-10 rounded-full border border-blue-500" /> */}
+                                   
+                                    <button onClick={logoutUser} className="btn bg-white text-cyanCustom border border-cyanCustom px-4 py-2 rounded-md  transition flex items-center space-x-2">
                                         <FaSignOutAlt /><span>Logout</span>
                                     </button>
                                 </div>
                             ) : (
                                 <>
-                                    <NavLink to="/login" className="btn bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition flex items-center space-x-2">
+                                    <NavLink to="/login" className="btn bg-cyanCustom text-white px-4 py-2 rounded-md hover:bg-cyanCustom transition flex items-center space-x-2">
                                         <FaSignInAlt /><span>Login</span>
                                     </NavLink>
-                                    <NavLink to="/register" className="btn bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition flex items-center space-x-2">
-                                        <FaUserCircle /><span>Register</span>
-                                    </NavLink>
+                                  
                                 </>
                             )}
                         </li>

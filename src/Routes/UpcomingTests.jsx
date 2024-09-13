@@ -50,11 +50,11 @@ const UpcomingTests = () => {
       <div className="container mx-auto py-16">
         {/* Header Section */}
         <section className="text-center mb-16" data-aos="fade-up">
-        <div className="flex gap-5 items-center mb-6 mx-10">
-            <h2 className="text-4xl font-semibold w-1/3  text-black  text-center mb-2">
+        <div className="flex flex-col md:flex-row gap-5 items-center mb-6 mx-5 md:mx-10">
+            <h2 className="text-3xl md:text-4xl font-semibold md:w-1/3 text-black text-center md:mb-0 mb-4">
               Our <span className="text-cyanCustom">Upcoming</span> Tests 
             </h2>
-            <h2 className="w-2/3 font-semibold border-l-4 border-cyanCustom pl-4">
+            <h2 className="md:w-2/3 font-semibold border-l-0 md:border-l-4 border-cyanCustom pl-0 md:pl-4 text-center md:text-left">
             Discover the latest technologies and advancements coming to our diagnostic center. Stay tuned for these exciting updates!
             </h2>
           </div>
@@ -66,7 +66,7 @@ const UpcomingTests = () => {
             {upcomingTestsData.map((test) => (
               <div
                 key={test.id}
-                className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl"
+                className="bg-white lg:mx-0 mx-4 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl"
                 data-aos="fade-up"
               >
                 <div className="relative">

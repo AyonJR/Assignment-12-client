@@ -6,7 +6,7 @@ import Header from "../shared/Header";
 const Main = () => {
     return (
         <div className="bg-gradient-to-b from-white to-cyanCustom/20">
-            <div className="">
+            <div className="lg:block hidden">
            <Header></Header>
             </div>
             <div className="">

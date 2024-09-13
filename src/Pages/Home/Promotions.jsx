@@ -28,14 +28,14 @@ const Promotions = () => {
 
   return (
     <section className=" p-6 mx-auto  rounded-md  mt-10">
-      <div className="flex gap-5 items-center mb-6 mx-10">
-        <h2 className="w-2/3 font-semibold border-r-4 border-cyanCustom pr-4">
+      <div className="flex flex-col-reverse md:flex-row gap-5 items-center mb-6 mx-5 md:mx-10">
+        <h2 className="md:w-2/3 font-semibold border-l-0 md:border-r-4 border-cyanCustom pl-0 md:pr-4 text-center md:text-left">
           This summer, get a discounted health check-up and ensure your
           well-being. Participate in our Blood Donation Camp and enjoy a free
           health consultation. Plus, refer a friend through our Referral Program
           and earn exciting rewards!
         </h2>
-        <h2 className="text-4xl font-semibold w-1/3  text-black  text-center mb-2">
+        <h2 className="text-3xl md:text-4xl font-semibold md:w-1/3 text-black text-center md:mb-0 mb-4">
           Our <span className="text-cyanCustom">Promotions</span>
         </h2>
       </div>

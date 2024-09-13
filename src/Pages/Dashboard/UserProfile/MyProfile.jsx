@@ -53,7 +53,7 @@ const MyProfile = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-cyanCustom/20">
-            <div className="max-w-lg w-full bg-white rounded-xl shadow-lg p-8 space-y-6 transform transition-all duration-300 hover:scale-105">
+            <div className="max-w-lg w-full bg-white rounded-xl shadow-lg p-8 space-y-6 ">
                 <h2 className="text-4xl font-bold text-center text-transparent bg-clip-text bg-cyanCustom">My Profile</h2>
                 
                 <div className="flex justify-center mb-6">

@@ -10,12 +10,12 @@ import useAxiosPublic from "../../CustomHooks/useAxiosPublic";
 import { FaGoogle, FaEnvelope, FaLock } from 'react-icons/fa';
 
 const Login = () => {
-    const { loginUserWithGoogle, loginUser  } = useContext(AuthContext);
+    const { loginUserWithGoogle, loginUser } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic(); 
 
-    // login
+    // Handle regular login
     const handleLogin = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -29,7 +29,7 @@ const Login = () => {
                 text: 'Logged in successfully',
                 icon: 'success',
                 confirmButtonText: 'Cool'
-            })
+            });
             navigate(location?.state?.from || '/');
         } catch (error) {
             console.error("Login Error:", error);
@@ -42,10 +42,32 @@ const Login = () => {
         }
     };
 
+    // Handle Google login
+    const handleGoogleLogin = async () => {
+        try {
+            await loginUserWithGoogle();
+            Swal.fire({
+                title: 'Success!',
+                text: 'Logged in with Google successfully',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            });
+            navigate(location?.state?.from || '/'); // Redirect to home page or previous page
+        } catch (error) {
+            console.error("Google Login Error:", error);
+            Swal.fire({
+                title: 'Error!',
+                text: 'Google login failed',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+    };
+
     return (
-        <div className="flex custom-font justify-center items-center min-h-screen ">
+        <div className="flex custom-font justify-center items-center min-h-screen">
             <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg transform transition-all hover:scale-105 duration-500">
-                <h2 className="text-4xl font-semibold text-transparent bg-clip-text text-cyanCustom mb-6 text-center animate-pulse">
+                <h2 className="text-4xl font-semibold  text-cyanCustom mb-6 text-center animate-pulse">
                     Login
                 </h2>
                 <p className="text-sm text-center text-gray-600 mb-4">
@@ -85,11 +107,10 @@ const Login = () => {
                     <div className="flex justify-center items-center">
                         <button 
                             type="submit" 
-                            className="px-6 py-3 bg-cyanCustom text-white font-semibold rounded-lg shadow-md hover:bg-gradient-to-l focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-300 transform hover:scale-110"
+                            className="px-6 py-3 bg-cyanCustom text-white font-semibold rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-300 transform hover:scale-110"
                         >
                             Log in
                         </button>
-                       
                     </div>
                 </form>
                 
@@ -100,8 +121,8 @@ const Login = () => {
                 </div>
                 
                 <button 
-                    onClick={() => loginUserWithGoogle()} 
-                    className="w-full px-4 py-2 bg-cyanCustom text-white font-semibold rounded-lg shadow-md hover:bg-gradient-to-l focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-300 transform hover:scale-110 flex items-center justify-center"
+                    onClick={handleGoogleLogin} 
+                    className="w-full px-4 py-2 bg-cyanCustom text-white font-semibold rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-300 transform hover:scale-110 flex items-center justify-center"
                 >
                     <FaGoogle className="mr-2" />
                     Log in with Google

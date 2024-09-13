@@ -88,7 +88,7 @@ const Register = () => {
 
     return (
         <div className="min-h-screen custom-font flex flex-col justify-center items-center ">
-            <section className="max-w-4xl mt-5 p-6 mx-auto bg-white rounded-md shadow-md transform transition-all duration-500 hover:scale-105">
+            <section className="lg:max-w-4xl mt-5 p-6 lg:mx-auto bg-white rounded-md shadow-md transform transition-all duration-500 hover:scale-105">
                 <form onSubmit={handleSubmit}>
                     <div className="flex justify-center mb-6">
                         <h2 className="text-4xl font-semibold text-transparent bg-clip-text bg-cyanCustom">
@@ -164,7 +164,7 @@ const Register = () => {
                     </div>
 
                     <div className="mt-6">
-                        <button type="submit" className="w-full px-6 py-2 text-sm font-medium text-white transition-colors duration-300 transform bg-cyanCustom rounded-md hover:bg-gradient-to-l focus:bg-gradient-to-l focus:outline-none">
+                        <button type="submit" className="w-full px-6 py-2 text-sm font-medium text-white transition-colors duration-300 transform bg-cyanCustom rounded-md  focus:bg-gradient-to-l focus:outline-none">
                             Sign Up
                         </button>
                     </div>

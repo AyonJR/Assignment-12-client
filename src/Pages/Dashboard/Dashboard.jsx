@@ -56,57 +56,57 @@ const Dashboard = () => {
             
             
             {/* Drawer */}
-            <div className="drawer ml-10 mt-10 lg:hidden">
-                <input id="my-drawer" type="checkbox" className="drawer-toggle" onChange={() => setIsDrawerOpen(!isDrawerOpen)} />
+            <div className="drawer  z-50 mt-10 lg:hidden">
+                <input id="my-drawer" type="checkbox" className="drawer-toggle " onChange={() => setIsDrawerOpen(!isDrawerOpen)} />
                 <div className="drawer-content">
                     {/* Page content here */}
-                    <label htmlFor="my-drawer" className="btn text-white bg-blue-400 drawer-button">
+                    <label htmlFor="my-drawer" className="btn text-white bg-cyanCustom drawer-button">
                     <TiThMenu />
                     </label>
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                    <ul className="menu p-4 w-80 min-h-full bg-white text-base-content">
                         {/* Sidebar content here */}
                         {isAdmin ? (
                             <>
-                                <li className="font-semibold">
+                                <li className="font-semibold text-cyanCustom">
                                     <NavLink to={"/dashboard/allUsers"}>
                                         <FaUsers />
                                         All Users
                                     </NavLink>
                                 </li>
-                                <li className="font-semibold">
+                                <li className="font-semibold text-cyanCustom">
                                     <NavLink to={"/dashboard/addTest"}>
                                         <IoBagAdd />
                                         Add Test
                                     </NavLink>
                                 </li>
-                                <li className="font-semibold">
+                                <li className="font-semibold text-cyanCustom">
                                     <NavLink to={"/dashboard/allTests"}>
                                         <RiLayoutHorizontalLine />
                                         All Tests
                                     </NavLink>
                                 </li>
-                                <li className="font-semibold">
+                                <li className="font-semibold text-cyanCustom">
                                     <NavLink to={"/dashboard/addBanner"}>
                                         <MdAddToQueue />
                                         Add Banner
                                     </NavLink>
                                 </li>
-                                <li className="font-semibold">
+                                <li className="font-semibold text-cyanCustom">
                                     <NavLink to={"/dashboard/allBanners"}>
                                         <PiFlagBannerFill />
                                         All Banners
                                     </NavLink>
                                 </li>
-                                <li className="font-semibold">
+                                <li className="font-semibold text-cyanCustom">
                                     <NavLink to={"/dashboard/serviceChart"}>
                                         <SiStatista />
                                         Statistics
                                     </NavLink>
                                 </li>
-                                <li className="font-semibold">
+                                <li className="font-semibold text-cyanCustom">
                                 <NavLink to={"/"}>
                                     <IoHomeSharp />
                                     Home
@@ -115,25 +115,25 @@ const Dashboard = () => {
                             </>
                         ) : (
                             <>
-                                <li className="font-semibold">
+                                <li className="font-semibold text-cyanCustom">
                                     <NavLink to={"/dashboard/myProfile"}>
                                         <ImProfile />
                                         My Profile
                                     </NavLink>
                                 </li>
-                                <li className="font-semibold">
+                                <li className="font-semibold text-cyanCustom">
                                     <NavLink to={"/dashboard/myAppointments"}>
                                         <MdOutlineUpcoming />
                                         My Appointments
                                     </NavLink>
                                 </li>
-                                <li className="font-semibold">
+                                <li className="font-semibold text-cyanCustom">
                                     <NavLink to={"/dashboard/testResult"}>
                                         <MdOutput />
                                         Test Result
                                     </NavLink>
                                 </li>
-                                <li className="font-semibold">
+                                <li className="font-semibold text-cyanCustom">
                                 <NavLink to={"/"}>
                                     <IoHomeSharp />
                                     Home
